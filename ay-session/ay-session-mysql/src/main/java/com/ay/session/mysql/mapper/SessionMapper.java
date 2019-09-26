@@ -6,7 +6,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface SessionMapper {
-    int countByExample(SessionExample example);
+    long countByExample(SessionExample example);
 
     int deleteByExample(SessionExample example);
 

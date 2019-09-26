@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Implementation-Title: common-httpclient
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: jackson
+Implementation-Vendor-Id: com.ay
+Build-Jdk: 1.8.0_192
+Created-By: Maven Integration for Eclipse
+

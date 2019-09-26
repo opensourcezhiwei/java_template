@@ -115,6 +115,7 @@ public class UserController extends BaseController {
 			}
 			Session session = new Session();
 			session.setUsername(username);
+//			this.departmentService.query
 			session = this.sessionService.saveSession(session);
 			Client client = this.clientService.selectByUsername(username);
 			ClientVo vo = new ClientVo();

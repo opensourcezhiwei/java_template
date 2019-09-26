@@ -26,6 +26,8 @@ import com.ay.rbac.vo.UserVo;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
+import ch.qos.logback.core.joran.util.beans.BeanUtil;
+
 @Service
 public class UserService {
 
@@ -43,10 +45,9 @@ public class UserService {
 
 	@Autowired
 	private UserDao userDao;
-	
+
 	@Autowired
 	private MenuService menuService;
-	
 
 	/** 登录 */
 	@Transactional
@@ -93,6 +94,18 @@ public class UserService {
 	}
 
 	@Transactional
+	public void uploadImg(User user) {
+		User oldUser = this.userMapper.selectByPrimaryKey(user.getId());
+		if (!StringUtil.isNull(user.getAlipayQrcode())) {
+			oldUser.setAlipayQrcode(user.getAlipayQrcode());
+		}
+		if (!StringUtil.isNull(user.getWechatQrcode())) {
+			oldUser.setWechatQrcode(user.getWechatQrcode());
+		}
+		this.userMapper.updateByPrimaryKey(user);
+	}
+
+	@Transactional
 	public int deleteByIds(List<Long> ids) {
 		int i = 0;
 		for (Long id : ids) {
@@ -130,7 +143,7 @@ public class UserService {
 	public List<User> selectByRoleId(Long roleId) {
 		return this.userDao.selectByRoleId(roleId);
 	}
-	
+
 	public User selectBySessionId(String sessionId) {
 		return this.userDao.selectBySessionId(sessionId);
 	}
@@ -156,7 +169,7 @@ public class UserService {
 		user.setUpdateTime(DateUtil.getCurrentDate());
 		return this.userMapper.updateByPrimaryKey(user);
 	}
-	
+
 	@Transactional
 	public int resetPassword(Long id) {
 		User user = this.userMapper.selectByPrimaryKey(id);
@@ -217,17 +230,15 @@ public class UserService {
 	/**
 	 * 查询部门用户,是否包括自己
 	 * 
-	 * @param ids
-	 *            部门ids
-	 * @param username
-	 *            自己
+	 * @param ids      部门ids
+	 * @param username 自己
 	 * @return
 	 */
 	public List<UserVo> queryDepartmentUsers(Set<Long> ids, String username) {
 		List<UserVo> userList = this.userDao.queryDepartmentUsers(ids, username);
 		return userList;
 	}
-	
+
 	public User queryByUsername(String username) {
 		UserExample example = new UserExample();
 		Criteria createCriteria = example.createCriteria();
@@ -235,35 +246,35 @@ public class UserService {
 			createCriteria.andUsernameEqualTo(username);
 		}
 		List<User> dataList = this.userMapper.selectByExample(example);
-		if(dataList != null && dataList.size() > 0) {
+		if (dataList != null && dataList.size() > 0) {
 			return dataList.get(0);
 		}
 		return null;
 	}
-	
+
 	public boolean isAuthByName(String username, String functionName) {
-    	boolean isAuth = false;
-    	List<Menu> menuList = menuService.selectByUsername(username);
-    	for(Menu menu : menuList) {
-    		if(functionName.equals(menu.getName())) {
-    			isAuth = true;
-    			break;
-    		}
-    	}
-    	return isAuth;
-    }
-	
+		boolean isAuth = false;
+		List<Menu> menuList = menuService.selectByUsername(username);
+		for (Menu menu : menuList) {
+			if (functionName.equals(menu.getName())) {
+				isAuth = true;
+				break;
+			}
+		}
+		return isAuth;
+	}
+
 	public boolean isRoleByName(String username, String roleName) {
-    	boolean isRoleName = false;
-    	List<Role> roleList = roleService.selectByUsername(username);
-    	for(Role role : roleList) {
-    		if(!StringUtil.isNull(role.getName())) {
-    			if(role.getName().contains(roleName)) {
-    				isRoleName = true;
-        			break;
-    			}
-    		}
-    	}
-    	return isRoleName;
-    }
+		boolean isRoleName = false;
+		List<Role> roleList = roleService.selectByUsername(username);
+		for (Role role : roleList) {
+			if (!StringUtil.isNull(role.getName())) {
+				if (role.getName().contains(roleName)) {
+					isRoleName = true;
+					break;
+				}
+			}
+		}
+		return isRoleName;
+	}
 }

@@ -23,8 +23,8 @@
         </jdbcConnection>
         -->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver" 
-        	connectionURL="jdbc:mysql://47.75.252.1:3306/wzapay?useUnicode=true&amp;characterEncoding=utf8" 
-        	userId="root" password="wm123456">
+        	connectionURL="jdbc:mysql://localhost/pay?useUnicode=true&amp;characterEncoding=utf8" 
+        	userId="root" password="jackson">
         </jdbcConnection>
         
         <javaTypeResolver>

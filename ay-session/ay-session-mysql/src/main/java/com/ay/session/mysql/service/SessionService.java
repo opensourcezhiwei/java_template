@@ -2,6 +2,8 @@ package com.ay.session.mysql.service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +22,8 @@ import com.ay.session.mysql.mapper.SessionMapper;
 @Service
 public class SessionService extends CommonService {
 
+	private Map<String, Session> sessionIdMap = new ConcurrentHashMap<>();
+
 	@Autowired
 	private SessionMapper sessionMapper;
 
@@ -34,12 +38,14 @@ public class SessionService extends CommonService {
 			session.setSessionId(System.currentTimeMillis() + UUIDUtil.generateUUID());
 			session.setTimeout(Byte.valueOf(Dictionary.STATUS.ENABLE + ""));
 			this.sessionMapper.insert(session);
+			sessionIdMap.put(session.getSessionId(), session);
 			return session;
 		}
 		Session oldSession = sessionList.get(0);
 		oldSession.setLastRequestTime(DateUtil.getCurrentDate());
 		oldSession.setTimeout(Byte.valueOf(Dictionary.STATUS.ENABLE + ""));
 		this.sessionMapper.updateByPrimaryKeySelective(oldSession);
+		sessionIdMap.put(oldSession.getSessionId(), oldSession);
 		return oldSession;
 	}
 
@@ -82,6 +88,14 @@ public class SessionService extends CommonService {
 		for (Session session : sessionList) {
 			this.deleteSession(session);
 		}
+	}
+
+	public String getUsernameBySessionId(String sessionId) {
+		return this.sessionIdMap.get(sessionId).getUsername();
+	}
+
+	public Session getSessionBySessionId(String sessionId) {
+		return this.sessionIdMap.get(sessionId);
 	}
 
 }

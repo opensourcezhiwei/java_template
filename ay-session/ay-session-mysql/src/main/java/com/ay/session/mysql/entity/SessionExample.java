@@ -424,22 +424,72 @@ public class SessionExample {
             addCriterion("timeout not between", value1, value2, "timeout");
             return (Criteria) this;
         }
+
+        public Criteria andPrivilegedIsNull() {
+            addCriterion("privileged is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPrivilegedIsNotNull() {
+            addCriterion("privileged is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPrivilegedEqualTo(Byte value) {
+            addCriterion("privileged =", value, "privileged");
+            return (Criteria) this;
+        }
+
+        public Criteria andPrivilegedNotEqualTo(Byte value) {
+            addCriterion("privileged <>", value, "privileged");
+            return (Criteria) this;
+        }
+
+        public Criteria andPrivilegedGreaterThan(Byte value) {
+            addCriterion("privileged >", value, "privileged");
+            return (Criteria) this;
+        }
+
+        public Criteria andPrivilegedGreaterThanOrEqualTo(Byte value) {
+            addCriterion("privileged >=", value, "privileged");
+            return (Criteria) this;
+        }
+
+        public Criteria andPrivilegedLessThan(Byte value) {
+            addCriterion("privileged <", value, "privileged");
+            return (Criteria) this;
+        }
+
+        public Criteria andPrivilegedLessThanOrEqualTo(Byte value) {
+            addCriterion("privileged <=", value, "privileged");
+            return (Criteria) this;
+        }
+
+        public Criteria andPrivilegedIn(List<Byte> values) {
+            addCriterion("privileged in", values, "privileged");
+            return (Criteria) this;
+        }
+
+        public Criteria andPrivilegedNotIn(List<Byte> values) {
+            addCriterion("privileged not in", values, "privileged");
+            return (Criteria) this;
+        }
+
+        public Criteria andPrivilegedBetween(Byte value1, Byte value2) {
+            addCriterion("privileged between", value1, value2, "privileged");
+            return (Criteria) this;
+        }
+
+        public Criteria andPrivilegedNotBetween(Byte value1, Byte value2) {
+            addCriterion("privileged not between", value1, value2, "privileged");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {
 
         protected Criteria() {
             super();
-        }
-
-        public Criteria andSessionIdLikeInsensitive(String value) {
-            addCriterion("upper(session_id) like", value.toUpperCase(), "sessionId");
-            return this;
-        }
-
-        public Criteria andUsernameLikeInsensitive(String value) {
-            addCriterion("upper(username) like", value.toUpperCase(), "username");
-            return this;
         }
     }
 

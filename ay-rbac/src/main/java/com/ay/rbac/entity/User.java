@@ -1,14 +1,17 @@
 package com.ay.rbac.entity;
 
-import java.io.Serializable;
 import java.util.Date;
 
-public class User implements Serializable {
+public class User {
     private Long id;
 
     private String username;
 
     private String password;
+
+    private String payPwd;
+
+    private String saltPay;
 
     private String name;
 
@@ -16,30 +19,30 @@ public class User implements Serializable {
 
     private String email;
 
+    private String wechatQrcode;
+
+    private String alipayQrcode;
+
+    private Byte enable;
+
     private Date createTime;
 
     private Date updateTime;
 
-    private Byte enable;
-
-    private String payPwd;
-
-    private String saltPay;
-
-    private static final long serialVersionUID = 1L;
-
-    public User(Long id, String username, String password, String name, String tel, String email, Date createTime, Date updateTime, Byte enable, String payPwd, String saltPay) {
+    public User(Long id, String username, String password, String payPwd, String saltPay, String name, String tel, String email, String wechatQrcode, String alipayQrcode, Byte enable, Date createTime, Date updateTime) {
         this.id = id;
         this.username = username;
         this.password = password;
+        this.payPwd = payPwd;
+        this.saltPay = saltPay;
         this.name = name;
         this.tel = tel;
         this.email = email;
+        this.wechatQrcode = wechatQrcode;
+        this.alipayQrcode = alipayQrcode;
+        this.enable = enable;
         this.createTime = createTime;
         this.updateTime = updateTime;
-        this.enable = enable;
-        this.payPwd = payPwd;
-        this.saltPay = saltPay;
     }
 
     public User() {
@@ -70,6 +73,22 @@ public class User implements Serializable {
         this.password = password == null ? null : password.trim();
     }
 
+    public String getPayPwd() {
+        return payPwd;
+    }
+
+    public void setPayPwd(String payPwd) {
+        this.payPwd = payPwd == null ? null : payPwd.trim();
+    }
+
+    public String getSaltPay() {
+        return saltPay;
+    }
+
+    public void setSaltPay(String saltPay) {
+        this.saltPay = saltPay == null ? null : saltPay.trim();
+    }
+
     public String getName() {
         return name;
     }
@@ -94,6 +113,30 @@ public class User implements Serializable {
         this.email = email == null ? null : email.trim();
     }
 
+    public String getWechatQrcode() {
+        return wechatQrcode;
+    }
+
+    public void setWechatQrcode(String wechatQrcode) {
+        this.wechatQrcode = wechatQrcode == null ? null : wechatQrcode.trim();
+    }
+
+    public String getAlipayQrcode() {
+        return alipayQrcode;
+    }
+
+    public void setAlipayQrcode(String alipayQrcode) {
+        this.alipayQrcode = alipayQrcode == null ? null : alipayQrcode.trim();
+    }
+
+    public Byte getEnable() {
+        return enable;
+    }
+
+    public void setEnable(Byte enable) {
+        this.enable = enable;
+    }
+
     public Date getCreateTime() {
         return createTime;
     }
@@ -108,72 +151,5 @@ public class User implements Serializable {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
-    }
-
-    public Byte getEnable() {
-        return enable;
-    }
-
-    public void setEnable(Byte enable) {
-        this.enable = enable;
-    }
-
-    public String getPayPwd() {
-        return payPwd;
-    }
-
-    public void setPayPwd(String payPwd) {
-        this.payPwd = payPwd == null ? null : payPwd.trim();
-    }
-
-    public String getSaltPay() {
-        return saltPay;
-    }
-
-    public void setSaltPay(String saltPay) {
-        this.saltPay = saltPay == null ? null : saltPay.trim();
-    }
-
-    @Override
-    public boolean equals(Object that) {
-        if (this == that) {
-            return true;
-        }
-        if (that == null) {
-            return false;
-        }
-        if (getClass() != that.getClass()) {
-            return false;
-        }
-        User other = (User) that;
-        return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
-            && (this.getUsername() == null ? other.getUsername() == null : this.getUsername().equals(other.getUsername()))
-            && (this.getPassword() == null ? other.getPassword() == null : this.getPassword().equals(other.getPassword()))
-            && (this.getName() == null ? other.getName() == null : this.getName().equals(other.getName()))
-            && (this.getTel() == null ? other.getTel() == null : this.getTel().equals(other.getTel()))
-            && (this.getEmail() == null ? other.getEmail() == null : this.getEmail().equals(other.getEmail()))
-            && (this.getCreateTime() == null ? other.getCreateTime() == null : this.getCreateTime().equals(other.getCreateTime()))
-            && (this.getUpdateTime() == null ? other.getUpdateTime() == null : this.getUpdateTime().equals(other.getUpdateTime()))
-            && (this.getEnable() == null ? other.getEnable() == null : this.getEnable().equals(other.getEnable()))
-            && (this.getPayPwd() == null ? other.getPayPwd() == null : this.getPayPwd().equals(other.getPayPwd()))
-            && (this.getSaltPay() == null ? other.getSaltPay() == null : this.getSaltPay().equals(other.getSaltPay()));
-    }
-
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
-        result = prime * result + ((getUsername() == null) ? 0 : getUsername().hashCode());
-        result = prime * result + ((getPassword() == null) ? 0 : getPassword().hashCode());
-        result = prime * result + ((getName() == null) ? 0 : getName().hashCode());
-        result = prime * result + ((getTel() == null) ? 0 : getTel().hashCode());
-        result = prime * result + ((getEmail() == null) ? 0 : getEmail().hashCode());
-        result = prime * result + ((getCreateTime() == null) ? 0 : getCreateTime().hashCode());
-        result = prime * result + ((getUpdateTime() == null) ? 0 : getUpdateTime().hashCode());
-        result = prime * result + ((getEnable() == null) ? 0 : getEnable().hashCode());
-        result = prime * result + ((getPayPwd() == null) ? 0 : getPayPwd().hashCode());
-        result = prime * result + ((getSaltPay() == null) ? 0 : getSaltPay().hashCode());
-        return result;
     }
 }

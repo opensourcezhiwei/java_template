@@ -22,7 +22,7 @@ import com.alibaba.druid.pool.DruidDataSource;
 import com.github.pagehelper.PageInterceptor;
 
 @Configuration
-@MapperScan(basePackages = { "com.ay.**.mapper", "com.ay.**.dao", "com.yq.**.mapper", "com.yq.**.dao", "com.yq.dw.mapper" })
+@MapperScan(basePackages = { "com.ay.**.mapper", "com.ay.**.dao", "com.yq.**.mapper", "com.yq.**.dao" })
 public class DruidDataSourceConfig {
 
 	private Logger logger = LoggerFactory.getLogger(this.getClass());

@@ -6,11 +6,13 @@ import java.io.InputStream;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.MediaType;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -48,9 +50,9 @@ public class SecurityInterceptor extends BaseController implements HandlerInterc
 		request.setAttribute("param", param);
 		String ip = this.getIpAddr(request);
 		logger.info("uri = {}, ip = {}, param = {}", request.getRequestURI(), ip, param);
-		/*if(true) {
-			return true;
-		}*/
+		/*
+		 * if(true) { return true; }
+		 */
 		// 过滤api文档
 		if (request.getRequestURI().contains("swagger")//
 				|| request.getRequestURI().endsWith("api-docs") //
@@ -60,10 +62,11 @@ public class SecurityInterceptor extends BaseController implements HandlerInterc
 			return true;
 		}
 		try {
-			/*if(1==1) {
-				return true;
-			}*/
-			String sessionId = this.getSessionId(request);
+			/*
+			 * if(1==1) { return true; }
+			 */
+//			String sessionId = this.getSessionId(request);
+			String sessionId = this.getSessionIdInHeader(request);
 			if (StringUtil.isNull(sessionId)) {
 				responseMessage(response, JSONUtil.map2Json(result(SESSION_IS_NULL_OR_EXPIRE, "session is null!")));
 				// response.sendRedirect(request.getContextPath() + "/login.html");
@@ -73,31 +76,36 @@ public class SecurityInterceptor extends BaseController implements HandlerInterc
 			if (this.sessionService == null) {
 				sessionService = WebApplicationContextUtils.getRequiredWebApplicationContext(request.getServletContext()).getBean(SessionService.class);
 			}
-			Session session = new Session();
-			session.setSessionId(sessionId);
-			List<Session> sessionList = sessionService.selectByCondition(session);
-			if (sessionList == null || sessionList.size() <= 0) {
-				logger.info("username = {}, session 过期或不存在!", session.getUsername());
-				responseMessage(response, JSONUtil.map2Json(result(SESSION_IS_NULL_OR_EXPIRE, "session is null or expire!")));
-				return false;
-			}
-			session = sessionList.get(0);
+			// 先从内存中取, 取不到匹配数据库
+			Session session = this.sessionService.getSessionBySessionId(sessionId);
 			if (session == null) {
-				// response.sendRedirect(request.getContextPath() + "/login.html");
-				responseMessage(response, JSONUtil.map2Json(result(SESSION_IS_NULL_OR_EXPIRE, "session is null or expire!")));
-				return false;
+				session = new Session();
+				session.setSessionId(sessionId);
+				List<Session> sessionList = sessionService.selectByCondition(session);
+				if (sessionList == null || sessionList.size() <= 0) {
+					logger.info("username = {}, session 过期或不存在!", session.getUsername());
+					responseMessage(response, JSONUtil.map2Json(result(SESSION_IS_NULL_OR_EXPIRE, "session is null or expire!")));
+					return false;
+				}
+				session = sessionList.get(0);
+				if (session == null) {
+					// response.sendRedirect(request.getContextPath() + "/login.html");
+					responseMessage(response, JSONUtil.map2Json(result(SESSION_IS_NULL_OR_EXPIRE, "session is null or expire!")));
+					return false;
+				}
+				if (StringUtil.isNull(session.getSessionId()) || StringUtil.isNull(session.getUsername())) {
+					responseMessage(response, JSONUtil.map2Json(result(SESSION_IS_NULL_OR_EXPIRE, "session is null or expire!")));
+					return false;
+				}
 			}
-			if (StringUtil.isNull(session.getSessionId()) || StringUtil.isNull(session.getUsername())) {
-				responseMessage(response, JSONUtil.map2Json(result(SESSION_IS_NULL_OR_EXPIRE, "session is null or expire!")));
-				return false;
-			}
-			//  判断session是否超时 30 分钟
+			// 判断session是否超时 30 分钟
 			Long time = System.currentTimeMillis() - session.getLastRequestTime().getTime();
-			if(time > 30*60*1000) {
+			if (time > 30 * 60 * 1000) {
 				responseMessage(response, JSONUtil.map2Json(result(SESSION_IS_NULL_OR_EXPIRE, "session is null or expire!")));
 				return false;
 			}
 			this.sessionService.saveSession(session);
+			request.setAttribute("session", session);
 			return true;
 		} catch (Exception e) {
 			logger.error("拦截器异常 : ", e);
@@ -116,6 +124,7 @@ public class SecurityInterceptor extends BaseController implements HandlerInterc
 
 	private void responseMessage(HttpServletResponse response, String msg) throws IOException {
 		BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(response.getOutputStream()));
+		response.setContentType(MediaType.APPLICATION_JSON_UTF8_VALUE);
 		writer.write(msg);
 		writer.flush();
 		writer.close();

@@ -305,6 +305,146 @@ public class UserExample {
             return (Criteria) this;
         }
 
+        public Criteria andPayPwdIsNull() {
+            addCriterion("pay_pwd is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPayPwdIsNotNull() {
+            addCriterion("pay_pwd is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPayPwdEqualTo(String value) {
+            addCriterion("pay_pwd =", value, "payPwd");
+            return (Criteria) this;
+        }
+
+        public Criteria andPayPwdNotEqualTo(String value) {
+            addCriterion("pay_pwd <>", value, "payPwd");
+            return (Criteria) this;
+        }
+
+        public Criteria andPayPwdGreaterThan(String value) {
+            addCriterion("pay_pwd >", value, "payPwd");
+            return (Criteria) this;
+        }
+
+        public Criteria andPayPwdGreaterThanOrEqualTo(String value) {
+            addCriterion("pay_pwd >=", value, "payPwd");
+            return (Criteria) this;
+        }
+
+        public Criteria andPayPwdLessThan(String value) {
+            addCriterion("pay_pwd <", value, "payPwd");
+            return (Criteria) this;
+        }
+
+        public Criteria andPayPwdLessThanOrEqualTo(String value) {
+            addCriterion("pay_pwd <=", value, "payPwd");
+            return (Criteria) this;
+        }
+
+        public Criteria andPayPwdLike(String value) {
+            addCriterion("pay_pwd like", value, "payPwd");
+            return (Criteria) this;
+        }
+
+        public Criteria andPayPwdNotLike(String value) {
+            addCriterion("pay_pwd not like", value, "payPwd");
+            return (Criteria) this;
+        }
+
+        public Criteria andPayPwdIn(List<String> values) {
+            addCriterion("pay_pwd in", values, "payPwd");
+            return (Criteria) this;
+        }
+
+        public Criteria andPayPwdNotIn(List<String> values) {
+            addCriterion("pay_pwd not in", values, "payPwd");
+            return (Criteria) this;
+        }
+
+        public Criteria andPayPwdBetween(String value1, String value2) {
+            addCriterion("pay_pwd between", value1, value2, "payPwd");
+            return (Criteria) this;
+        }
+
+        public Criteria andPayPwdNotBetween(String value1, String value2) {
+            addCriterion("pay_pwd not between", value1, value2, "payPwd");
+            return (Criteria) this;
+        }
+
+        public Criteria andSaltPayIsNull() {
+            addCriterion("salt_pay is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSaltPayIsNotNull() {
+            addCriterion("salt_pay is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSaltPayEqualTo(String value) {
+            addCriterion("salt_pay =", value, "saltPay");
+            return (Criteria) this;
+        }
+
+        public Criteria andSaltPayNotEqualTo(String value) {
+            addCriterion("salt_pay <>", value, "saltPay");
+            return (Criteria) this;
+        }
+
+        public Criteria andSaltPayGreaterThan(String value) {
+            addCriterion("salt_pay >", value, "saltPay");
+            return (Criteria) this;
+        }
+
+        public Criteria andSaltPayGreaterThanOrEqualTo(String value) {
+            addCriterion("salt_pay >=", value, "saltPay");
+            return (Criteria) this;
+        }
+
+        public Criteria andSaltPayLessThan(String value) {
+            addCriterion("salt_pay <", value, "saltPay");
+            return (Criteria) this;
+        }
+
+        public Criteria andSaltPayLessThanOrEqualTo(String value) {
+            addCriterion("salt_pay <=", value, "saltPay");
+            return (Criteria) this;
+        }
+
+        public Criteria andSaltPayLike(String value) {
+            addCriterion("salt_pay like", value, "saltPay");
+            return (Criteria) this;
+        }
+
+        public Criteria andSaltPayNotLike(String value) {
+            addCriterion("salt_pay not like", value, "saltPay");
+            return (Criteria) this;
+        }
+
+        public Criteria andSaltPayIn(List<String> values) {
+            addCriterion("salt_pay in", values, "saltPay");
+            return (Criteria) this;
+        }
+
+        public Criteria andSaltPayNotIn(List<String> values) {
+            addCriterion("salt_pay not in", values, "saltPay");
+            return (Criteria) this;
+        }
+
+        public Criteria andSaltPayBetween(String value1, String value2) {
+            addCriterion("salt_pay between", value1, value2, "saltPay");
+            return (Criteria) this;
+        }
+
+        public Criteria andSaltPayNotBetween(String value1, String value2) {
+            addCriterion("salt_pay not between", value1, value2, "saltPay");
+            return (Criteria) this;
+        }
+
         public Criteria andNameIsNull() {
             addCriterion("name is null");
             return (Criteria) this;
@@ -515,6 +655,206 @@ public class UserExample {
             return (Criteria) this;
         }
 
+        public Criteria andWechatQrcodeIsNull() {
+            addCriterion("wechat_qrcode is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andWechatQrcodeIsNotNull() {
+            addCriterion("wechat_qrcode is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andWechatQrcodeEqualTo(String value) {
+            addCriterion("wechat_qrcode =", value, "wechatQrcode");
+            return (Criteria) this;
+        }
+
+        public Criteria andWechatQrcodeNotEqualTo(String value) {
+            addCriterion("wechat_qrcode <>", value, "wechatQrcode");
+            return (Criteria) this;
+        }
+
+        public Criteria andWechatQrcodeGreaterThan(String value) {
+            addCriterion("wechat_qrcode >", value, "wechatQrcode");
+            return (Criteria) this;
+        }
+
+        public Criteria andWechatQrcodeGreaterThanOrEqualTo(String value) {
+            addCriterion("wechat_qrcode >=", value, "wechatQrcode");
+            return (Criteria) this;
+        }
+
+        public Criteria andWechatQrcodeLessThan(String value) {
+            addCriterion("wechat_qrcode <", value, "wechatQrcode");
+            return (Criteria) this;
+        }
+
+        public Criteria andWechatQrcodeLessThanOrEqualTo(String value) {
+            addCriterion("wechat_qrcode <=", value, "wechatQrcode");
+            return (Criteria) this;
+        }
+
+        public Criteria andWechatQrcodeLike(String value) {
+            addCriterion("wechat_qrcode like", value, "wechatQrcode");
+            return (Criteria) this;
+        }
+
+        public Criteria andWechatQrcodeNotLike(String value) {
+            addCriterion("wechat_qrcode not like", value, "wechatQrcode");
+            return (Criteria) this;
+        }
+
+        public Criteria andWechatQrcodeIn(List<String> values) {
+            addCriterion("wechat_qrcode in", values, "wechatQrcode");
+            return (Criteria) this;
+        }
+
+        public Criteria andWechatQrcodeNotIn(List<String> values) {
+            addCriterion("wechat_qrcode not in", values, "wechatQrcode");
+            return (Criteria) this;
+        }
+
+        public Criteria andWechatQrcodeBetween(String value1, String value2) {
+            addCriterion("wechat_qrcode between", value1, value2, "wechatQrcode");
+            return (Criteria) this;
+        }
+
+        public Criteria andWechatQrcodeNotBetween(String value1, String value2) {
+            addCriterion("wechat_qrcode not between", value1, value2, "wechatQrcode");
+            return (Criteria) this;
+        }
+
+        public Criteria andAlipayQrcodeIsNull() {
+            addCriterion("alipay_qrcode is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAlipayQrcodeIsNotNull() {
+            addCriterion("alipay_qrcode is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAlipayQrcodeEqualTo(String value) {
+            addCriterion("alipay_qrcode =", value, "alipayQrcode");
+            return (Criteria) this;
+        }
+
+        public Criteria andAlipayQrcodeNotEqualTo(String value) {
+            addCriterion("alipay_qrcode <>", value, "alipayQrcode");
+            return (Criteria) this;
+        }
+
+        public Criteria andAlipayQrcodeGreaterThan(String value) {
+            addCriterion("alipay_qrcode >", value, "alipayQrcode");
+            return (Criteria) this;
+        }
+
+        public Criteria andAlipayQrcodeGreaterThanOrEqualTo(String value) {
+            addCriterion("alipay_qrcode >=", value, "alipayQrcode");
+            return (Criteria) this;
+        }
+
+        public Criteria andAlipayQrcodeLessThan(String value) {
+            addCriterion("alipay_qrcode <", value, "alipayQrcode");
+            return (Criteria) this;
+        }
+
+        public Criteria andAlipayQrcodeLessThanOrEqualTo(String value) {
+            addCriterion("alipay_qrcode <=", value, "alipayQrcode");
+            return (Criteria) this;
+        }
+
+        public Criteria andAlipayQrcodeLike(String value) {
+            addCriterion("alipay_qrcode like", value, "alipayQrcode");
+            return (Criteria) this;
+        }
+
+        public Criteria andAlipayQrcodeNotLike(String value) {
+            addCriterion("alipay_qrcode not like", value, "alipayQrcode");
+            return (Criteria) this;
+        }
+
+        public Criteria andAlipayQrcodeIn(List<String> values) {
+            addCriterion("alipay_qrcode in", values, "alipayQrcode");
+            return (Criteria) this;
+        }
+
+        public Criteria andAlipayQrcodeNotIn(List<String> values) {
+            addCriterion("alipay_qrcode not in", values, "alipayQrcode");
+            return (Criteria) this;
+        }
+
+        public Criteria andAlipayQrcodeBetween(String value1, String value2) {
+            addCriterion("alipay_qrcode between", value1, value2, "alipayQrcode");
+            return (Criteria) this;
+        }
+
+        public Criteria andAlipayQrcodeNotBetween(String value1, String value2) {
+            addCriterion("alipay_qrcode not between", value1, value2, "alipayQrcode");
+            return (Criteria) this;
+        }
+
+        public Criteria andEnableIsNull() {
+            addCriterion("enable is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andEnableIsNotNull() {
+            addCriterion("enable is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andEnableEqualTo(Byte value) {
+            addCriterion("enable =", value, "enable");
+            return (Criteria) this;
+        }
+
+        public Criteria andEnableNotEqualTo(Byte value) {
+            addCriterion("enable <>", value, "enable");
+            return (Criteria) this;
+        }
+
+        public Criteria andEnableGreaterThan(Byte value) {
+            addCriterion("enable >", value, "enable");
+            return (Criteria) this;
+        }
+
+        public Criteria andEnableGreaterThanOrEqualTo(Byte value) {
+            addCriterion("enable >=", value, "enable");
+            return (Criteria) this;
+        }
+
+        public Criteria andEnableLessThan(Byte value) {
+            addCriterion("enable <", value, "enable");
+            return (Criteria) this;
+        }
+
+        public Criteria andEnableLessThanOrEqualTo(Byte value) {
+            addCriterion("enable <=", value, "enable");
+            return (Criteria) this;
+        }
+
+        public Criteria andEnableIn(List<Byte> values) {
+            addCriterion("enable in", values, "enable");
+            return (Criteria) this;
+        }
+
+        public Criteria andEnableNotIn(List<Byte> values) {
+            addCriterion("enable not in", values, "enable");
+            return (Criteria) this;
+        }
+
+        public Criteria andEnableBetween(Byte value1, Byte value2) {
+            addCriterion("enable between", value1, value2, "enable");
+            return (Criteria) this;
+        }
+
+        public Criteria andEnableNotBetween(Byte value1, Byte value2) {
+            addCriterion("enable not between", value1, value2, "enable");
+            return (Criteria) this;
+        }
+
         public Criteria andCreateTimeIsNull() {
             addCriterion("create_time is null");
             return (Criteria) this;
@@ -634,247 +974,12 @@ public class UserExample {
             addCriterion("update_time not between", value1, value2, "updateTime");
             return (Criteria) this;
         }
-
-        public Criteria andEnableIsNull() {
-            addCriterion("enable is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andEnableIsNotNull() {
-            addCriterion("enable is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andEnableEqualTo(Byte value) {
-            addCriterion("enable =", value, "enable");
-            return (Criteria) this;
-        }
-
-        public Criteria andEnableNotEqualTo(Byte value) {
-            addCriterion("enable <>", value, "enable");
-            return (Criteria) this;
-        }
-
-        public Criteria andEnableGreaterThan(Byte value) {
-            addCriterion("enable >", value, "enable");
-            return (Criteria) this;
-        }
-
-        public Criteria andEnableGreaterThanOrEqualTo(Byte value) {
-            addCriterion("enable >=", value, "enable");
-            return (Criteria) this;
-        }
-
-        public Criteria andEnableLessThan(Byte value) {
-            addCriterion("enable <", value, "enable");
-            return (Criteria) this;
-        }
-
-        public Criteria andEnableLessThanOrEqualTo(Byte value) {
-            addCriterion("enable <=", value, "enable");
-            return (Criteria) this;
-        }
-
-        public Criteria andEnableIn(List<Byte> values) {
-            addCriterion("enable in", values, "enable");
-            return (Criteria) this;
-        }
-
-        public Criteria andEnableNotIn(List<Byte> values) {
-            addCriterion("enable not in", values, "enable");
-            return (Criteria) this;
-        }
-
-        public Criteria andEnableBetween(Byte value1, Byte value2) {
-            addCriterion("enable between", value1, value2, "enable");
-            return (Criteria) this;
-        }
-
-        public Criteria andEnableNotBetween(Byte value1, Byte value2) {
-            addCriterion("enable not between", value1, value2, "enable");
-            return (Criteria) this;
-        }
-
-        public Criteria andPayPwdIsNull() {
-            addCriterion("pay_pwd is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andPayPwdIsNotNull() {
-            addCriterion("pay_pwd is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andPayPwdEqualTo(String value) {
-            addCriterion("pay_pwd =", value, "payPwd");
-            return (Criteria) this;
-        }
-
-        public Criteria andPayPwdNotEqualTo(String value) {
-            addCriterion("pay_pwd <>", value, "payPwd");
-            return (Criteria) this;
-        }
-
-        public Criteria andPayPwdGreaterThan(String value) {
-            addCriterion("pay_pwd >", value, "payPwd");
-            return (Criteria) this;
-        }
-
-        public Criteria andPayPwdGreaterThanOrEqualTo(String value) {
-            addCriterion("pay_pwd >=", value, "payPwd");
-            return (Criteria) this;
-        }
-
-        public Criteria andPayPwdLessThan(String value) {
-            addCriterion("pay_pwd <", value, "payPwd");
-            return (Criteria) this;
-        }
-
-        public Criteria andPayPwdLessThanOrEqualTo(String value) {
-            addCriterion("pay_pwd <=", value, "payPwd");
-            return (Criteria) this;
-        }
-
-        public Criteria andPayPwdLike(String value) {
-            addCriterion("pay_pwd like", value, "payPwd");
-            return (Criteria) this;
-        }
-
-        public Criteria andPayPwdNotLike(String value) {
-            addCriterion("pay_pwd not like", value, "payPwd");
-            return (Criteria) this;
-        }
-
-        public Criteria andPayPwdIn(List<String> values) {
-            addCriterion("pay_pwd in", values, "payPwd");
-            return (Criteria) this;
-        }
-
-        public Criteria andPayPwdNotIn(List<String> values) {
-            addCriterion("pay_pwd not in", values, "payPwd");
-            return (Criteria) this;
-        }
-
-        public Criteria andPayPwdBetween(String value1, String value2) {
-            addCriterion("pay_pwd between", value1, value2, "payPwd");
-            return (Criteria) this;
-        }
-
-        public Criteria andPayPwdNotBetween(String value1, String value2) {
-            addCriterion("pay_pwd not between", value1, value2, "payPwd");
-            return (Criteria) this;
-        }
-
-        public Criteria andSaltPayIsNull() {
-            addCriterion("salt_pay is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andSaltPayIsNotNull() {
-            addCriterion("salt_pay is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andSaltPayEqualTo(String value) {
-            addCriterion("salt_pay =", value, "saltPay");
-            return (Criteria) this;
-        }
-
-        public Criteria andSaltPayNotEqualTo(String value) {
-            addCriterion("salt_pay <>", value, "saltPay");
-            return (Criteria) this;
-        }
-
-        public Criteria andSaltPayGreaterThan(String value) {
-            addCriterion("salt_pay >", value, "saltPay");
-            return (Criteria) this;
-        }
-
-        public Criteria andSaltPayGreaterThanOrEqualTo(String value) {
-            addCriterion("salt_pay >=", value, "saltPay");
-            return (Criteria) this;
-        }
-
-        public Criteria andSaltPayLessThan(String value) {
-            addCriterion("salt_pay <", value, "saltPay");
-            return (Criteria) this;
-        }
-
-        public Criteria andSaltPayLessThanOrEqualTo(String value) {
-            addCriterion("salt_pay <=", value, "saltPay");
-            return (Criteria) this;
-        }
-
-        public Criteria andSaltPayLike(String value) {
-            addCriterion("salt_pay like", value, "saltPay");
-            return (Criteria) this;
-        }
-
-        public Criteria andSaltPayNotLike(String value) {
-            addCriterion("salt_pay not like", value, "saltPay");
-            return (Criteria) this;
-        }
-
-        public Criteria andSaltPayIn(List<String> values) {
-            addCriterion("salt_pay in", values, "saltPay");
-            return (Criteria) this;
-        }
-
-        public Criteria andSaltPayNotIn(List<String> values) {
-            addCriterion("salt_pay not in", values, "saltPay");
-            return (Criteria) this;
-        }
-
-        public Criteria andSaltPayBetween(String value1, String value2) {
-            addCriterion("salt_pay between", value1, value2, "saltPay");
-            return (Criteria) this;
-        }
-
-        public Criteria andSaltPayNotBetween(String value1, String value2) {
-            addCriterion("salt_pay not between", value1, value2, "saltPay");
-            return (Criteria) this;
-        }
     }
 
     public static class Criteria extends GeneratedCriteria {
 
         protected Criteria() {
             super();
-        }
-
-        public Criteria andUsernameLikeInsensitive(String value) {
-            addCriterion("upper(username) like", value.toUpperCase(), "username");
-            return this;
-        }
-
-        public Criteria andPasswordLikeInsensitive(String value) {
-            addCriterion("upper(password) like", value.toUpperCase(), "password");
-            return this;
-        }
-
-        public Criteria andNameLikeInsensitive(String value) {
-            addCriterion("upper(name) like", value.toUpperCase(), "name");
-            return this;
-        }
-
-        public Criteria andTelLikeInsensitive(String value) {
-            addCriterion("upper(tel) like", value.toUpperCase(), "tel");
-            return this;
-        }
-
-        public Criteria andEmailLikeInsensitive(String value) {
-            addCriterion("upper(email) like", value.toUpperCase(), "email");
-            return this;
-        }
-
-        public Criteria andPayPwdLikeInsensitive(String value) {
-            addCriterion("upper(pay_pwd) like", value.toUpperCase(), "payPwd");
-            return this;
-        }
-
-        public Criteria andSaltPayLikeInsensitive(String value) {
-            addCriterion("upper(salt_pay) like", value.toUpperCase(), "saltPay");
-            return this;
         }
     }
 

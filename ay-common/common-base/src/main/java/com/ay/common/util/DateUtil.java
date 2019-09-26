@@ -13,6 +13,7 @@ public class DateUtil {
 	public static String YY_MM_DD_HH_MM_SS = "yyyy-MM-dd HH:mm:ss";
 	public static String YY_MM_DD_HH_MM = "yyyy-MM-dd HH:mm";
 	public static String YY_MM_DD = "yyyy-MM-dd";
+	public static String YY_MM_DD1 = "yyyyMMdd";
 	public static String YYMMDD = "yyyyMMdd";
 	public static String MM_DD_HH_MM = "MM-dd HH:mm";
 	public static String YY_MM_DD_HH_MM_SS_2 = "yyyy/MM/dd HH:mm:ss";

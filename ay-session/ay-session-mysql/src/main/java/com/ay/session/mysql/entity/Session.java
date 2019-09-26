@@ -1,9 +1,8 @@
 package com.ay.session.mysql.entity;
 
-import java.io.Serializable;
 import java.util.Date;
 
-public class Session implements Serializable {
+public class Session {
     private Long id;
 
     private String sessionId;
@@ -14,14 +13,15 @@ public class Session implements Serializable {
 
     private Byte timeout;
 
-    private static final long serialVersionUID = 1L;
+    private Byte privileged;
 
-    public Session(Long id, String sessionId, String username, Date lastRequestTime, Byte timeout) {
+    public Session(Long id, String sessionId, String username, Date lastRequestTime, Byte timeout, Byte privileged) {
         this.id = id;
         this.sessionId = sessionId;
         this.username = username;
         this.lastRequestTime = lastRequestTime;
         this.timeout = timeout;
+        this.privileged = privileged;
     }
 
     public Session() {
@@ -68,34 +68,11 @@ public class Session implements Serializable {
         this.timeout = timeout;
     }
 
-    @Override
-    public boolean equals(Object that) {
-        if (this == that) {
-            return true;
-        }
-        if (that == null) {
-            return false;
-        }
-        if (getClass() != that.getClass()) {
-            return false;
-        }
-        Session other = (Session) that;
-        return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
-            && (this.getSessionId() == null ? other.getSessionId() == null : this.getSessionId().equals(other.getSessionId()))
-            && (this.getUsername() == null ? other.getUsername() == null : this.getUsername().equals(other.getUsername()))
-            && (this.getLastRequestTime() == null ? other.getLastRequestTime() == null : this.getLastRequestTime().equals(other.getLastRequestTime()))
-            && (this.getTimeout() == null ? other.getTimeout() == null : this.getTimeout().equals(other.getTimeout()));
+    public Byte getPrivileged() {
+        return privileged;
     }
 
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
-        result = prime * result + ((getSessionId() == null) ? 0 : getSessionId().hashCode());
-        result = prime * result + ((getUsername() == null) ? 0 : getUsername().hashCode());
-        result = prime * result + ((getLastRequestTime() == null) ? 0 : getLastRequestTime().hashCode());
-        result = prime * result + ((getTimeout() == null) ? 0 : getTimeout().hashCode());
-        return result;
+    public void setPrivileged(Byte privileged) {
+        this.privileged = privileged;
     }
 }

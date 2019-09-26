@@ -60,4 +60,8 @@ public class BaseController implements StatusCode {
 		}
 		return null;
 	}
+
+	protected String getSessionIdInHeader(HttpServletRequest request) {
+		return request.getHeader("sessionId");
+	}
 }

@@ -2,10 +2,12 @@ package com.ay.common.util;
 
 import java.io.UnsupportedEncodingException;
 import java.security.InvalidKeyException;
+import java.security.Key;
 import java.security.KeyFactory;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.interfaces.RSAPrivateKey;
+import java.security.spec.AlgorithmParameterSpec;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -16,9 +18,14 @@ import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.Mac;
 import javax.crypto.NoSuchPaddingException;
+import javax.crypto.SecretKeyFactory;
+import javax.crypto.spec.DESKeySpec;
+import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
 import org.apache.commons.codec.binary.Base64;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * 加解密工具
@@ -27,8 +34,24 @@ import org.apache.commons.codec.binary.Base64;
  *
  */
 public class EncUtil {
+	
+	private static final Logger logger = LoggerFactory.getLogger(EncUtil.class);
 
 	public static final String DEFAULT_JOIN = "&";
+
+	public static String HMAC_SHA256(String data, String key) {
+		try {
+
+			Mac sha256_HMAC = Mac.getInstance("HmacSHA256");
+			SecretKeySpec secret_key = new SecretKeySpec(key.getBytes(), "HmacSHA256");
+			sha256_HMAC.init(secret_key);
+
+			return Base64.encodeBase64String(sha256_HMAC.doFinal(data.getBytes()));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 
 	public static String HMAC_SHA1(String data, String key) {
 		byte[] byteHMAC = null;
@@ -44,6 +67,7 @@ public class EncUtil {
 		}
 		return "";
 	}
+
 	public static byte[] HMAC_SHA1By(String data, String key) {
 		byte[] byteHMAC = null;
 		try {
@@ -204,6 +228,8 @@ public class EncUtil {
 		} else {
 			buffer = new StringBuilder(buffer.substring(0, buffer.length() - 1));
 		}
+		logger.info("明文 = {}, 密文 = {}", buffer.toString(), EncUtil.toMD5(buffer.toString()));
 		return EncUtil.toMD5(buffer.toString());
 	}
+
 }
