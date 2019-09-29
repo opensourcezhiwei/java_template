@@ -265,4 +265,43 @@ public class DateUtil {
 		c.setTimeInMillis(millis);
 		return DateUtil.format(format, c.getTime(), timeZone);
 	}
+
+	/**
+	 *  获取某个月的开始时间
+	 * @param date
+	 * @return
+	 */
+	public static Date getMonthStart(Date date) {
+
+		Calendar calendar = Calendar.getInstance();
+
+		calendar.setTime(date);
+
+		int index = calendar.get(Calendar.DAY_OF_MONTH);
+
+		calendar.add(Calendar.DATE, (1 - index));
+
+		return calendar.getTime();
+
+	}
+
+	/**
+	 *  获取某个月的结束时间
+	 * @param date
+	 * @return
+	 */
+	public static Date getMonthEnd(Date date) {
+
+		Calendar calendar = Calendar.getInstance();
+
+		calendar.setTime(date);
+
+		calendar.add(Calendar.MONTH, 1);
+
+		int index = calendar.get(Calendar.DAY_OF_MONTH);
+
+		calendar.add(Calendar.DATE, (-index));
+
+		return calendar.getTime();
+	}
 }
