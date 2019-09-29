@@ -1,0 +1,43 @@
+查询类目接口：/classify/list
+入参：无
+出参：
+[
+  {
+    "classifyIcon": "string",
+    "createBy": 0,
+    "createTime": "2019-09-29T12:32:45.130Z",
+    "iconType": 0,
+    "id": 0,
+    "name": "string",
+    "updateBy": 0,
+    "updateTime": "2019-09-29T12:32:45.131Z"
+  }
+]
+
+根据类目查询视频列表接口：/video/getClassifiedVideo
+入参：classifyId   类型int
+出参:
+[
+  {
+    "briefContent": "string",
+    "channelId": 0,
+    "classifyId": 0,
+    "createBy": 0,
+    "createTime": "2019-09-29T12:36:08.470Z",
+    "id": 0,
+    "isPush": 0,
+    "loseNum": 0,
+    "playNum": 0,
+    "pushTime": "2019-09-29T12:36:08.470Z",
+    "sourceId": "string",
+    "sourceUrl": "string",
+    "starId": 0,
+    "updateBy": 0,
+    "updateTime": "2019-09-29T12:36:08.470Z",
+    "videoCame": "string",
+    "videoCover": "string",
+    "videoCoverType": 0,
+    "videoType": 0,
+    "videoUrl": "string"
+  }
+]
