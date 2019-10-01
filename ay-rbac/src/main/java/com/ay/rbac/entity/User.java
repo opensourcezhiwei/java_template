@@ -19,17 +19,15 @@ public class User {
 
     private String email;
 
-    private String wechatQrcode;
-
-    private String alipayQrcode;
-
     private Byte enable;
+
+    private Byte autoGrab;
 
     private Date createTime;
 
     private Date updateTime;
 
-    public User(Long id, String username, String password, String payPwd, String saltPay, String name, String tel, String email, String wechatQrcode, String alipayQrcode, Byte enable, Date createTime, Date updateTime) {
+    public User(Long id, String username, String password, String payPwd, String saltPay, String name, String tel, String email, Byte enable, Byte autoGrab, Date createTime, Date updateTime) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -38,9 +36,8 @@ public class User {
         this.name = name;
         this.tel = tel;
         this.email = email;
-        this.wechatQrcode = wechatQrcode;
-        this.alipayQrcode = alipayQrcode;
         this.enable = enable;
+        this.autoGrab = autoGrab;
         this.createTime = createTime;
         this.updateTime = updateTime;
     }
@@ -113,28 +110,20 @@ public class User {
         this.email = email == null ? null : email.trim();
     }
 
-    public String getWechatQrcode() {
-        return wechatQrcode;
-    }
-
-    public void setWechatQrcode(String wechatQrcode) {
-        this.wechatQrcode = wechatQrcode == null ? null : wechatQrcode.trim();
-    }
-
-    public String getAlipayQrcode() {
-        return alipayQrcode;
-    }
-
-    public void setAlipayQrcode(String alipayQrcode) {
-        this.alipayQrcode = alipayQrcode == null ? null : alipayQrcode.trim();
-    }
-
     public Byte getEnable() {
         return enable;
     }
 
     public void setEnable(Byte enable) {
         this.enable = enable;
+    }
+
+    public Byte getAutoGrab() {
+        return autoGrab;
+    }
+
+    public void setAutoGrab(Byte autoGrab) {
+        this.autoGrab = autoGrab;
     }
 
     public Date getCreateTime() {

@@ -26,8 +26,6 @@ import com.ay.rbac.vo.UserVo;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
-import ch.qos.logback.core.joran.util.beans.BeanUtil;
-
 @Service
 public class UserService {
 
@@ -91,18 +89,6 @@ public class UserService {
 		// 3. 直接插入
 		this.departmentService.insertUserDepartment(user.getId(), departmentIds);
 		this.roleService.insertUserRoles(user.getId(), newRoleIds);
-	}
-
-	@Transactional
-	public void uploadImg(User user) {
-		User oldUser = this.userMapper.selectByPrimaryKey(user.getId());
-		if (!StringUtil.isNull(user.getAlipayQrcode())) {
-			oldUser.setAlipayQrcode(user.getAlipayQrcode());
-		}
-		if (!StringUtil.isNull(user.getWechatQrcode())) {
-			oldUser.setWechatQrcode(user.getWechatQrcode());
-		}
-		this.userMapper.updateByPrimaryKey(user);
 	}
 
 	@Transactional

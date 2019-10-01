@@ -69,7 +69,7 @@ public class UserController extends BaseController {
 	private String domainCheck;
 	@Value("${domain.url:http://oa.nyjt88.com/sys/user-ldap.html?mode=api}")
 	private String domainUrl;
-	
+
 	@ApiOperation(value = "登录用户")
 	@ApiImplicitParams({ //
 			@ApiImplicitParam(name = "param", value = "{username:xx, password:xx}", dataType = "string", required = true, paramType = "string"), //
@@ -86,10 +86,10 @@ public class UserController extends BaseController {
 				return result(PARAM_IS_NULL, "用户名密码为空!");
 			}
 			User user = this.userService.queryByUsername(username);
-			if(user == null) {
+			if (user == null) {
 				return result(ERROR, "该用户名不存在!");
 			}
-			if("true".equals(domainCheck) && !"admin".equals(username)) {
+			if ("true".equals(domainCheck) && !"admin".equals(username)) {
 				Map<String, Object> params = new HashMap<>();
 				params.put("account", username);
 				params.put("password", password);
@@ -97,14 +97,14 @@ public class UserController extends BaseController {
 				headerMap.put("Content-Type", "application/x-www-form-urlencoded");
 				String result = HttpClientUtil.sendPost(domainUrl, params, headerMap);
 				logger.info("域验证结果：{}", result);
-				if(StringUtil.isNull(result)) {
+				if (StringUtil.isNull(result)) {
 					return result(ERROR, "域验证接口不通!");
 				}
 				parseObject = JSONObject.parseObject(result);
-				if(!"0".equals(parseObject.getString("code"))) {
+				if (!"0".equals(parseObject.getString("code"))) {
 					return result(ERROR, "域验证不通过!");
 				}
-			}else {
+			} else {
 				user = this.userService.login(username, EncUtil.toMD5(password));
 				if (user == null) {
 					return result(ERROR, "用户名密码不匹配!");
@@ -179,7 +179,7 @@ public class UserController extends BaseController {
 
 	@ApiOperation(value = "保存用户信息以及权限")
 	@ApiImplicitParams({ //
-			@ApiImplicitParam(name = "param", value = "{clientId:xx, user:{id:id(有参更新 无参保存),username:'账户',password:'密码',name:'姓名',tel:'电话',email:'邮箱', enable:(0禁用,1启用)}, roleIds:[岗位id组], departmentIds:[部门id组]}", dataType = "string", required = true, paramType = "string"), //
+			@ApiImplicitParam(name = "param", value = "{clientId:xx, user:{id:id(有参更新 无参保存),username:'账户',password:'密码',name:'姓名',tel:'电话',email:'邮箱', enable:(0禁用,1启用)}, autoGrab:(0:关闭, 1:启动), roleIds:[岗位id组], departmentIds:[部门id组]}", dataType = "string", required = true, paramType = "string"), //
 	})
 	@RequestMapping(value = "/saveUser", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	public Map<String, Object> saveUser(HttpServletRequest request) {

@@ -655,146 +655,6 @@ public class UserExample {
             return (Criteria) this;
         }
 
-        public Criteria andWechatQrcodeIsNull() {
-            addCriterion("wechat_qrcode is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andWechatQrcodeIsNotNull() {
-            addCriterion("wechat_qrcode is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andWechatQrcodeEqualTo(String value) {
-            addCriterion("wechat_qrcode =", value, "wechatQrcode");
-            return (Criteria) this;
-        }
-
-        public Criteria andWechatQrcodeNotEqualTo(String value) {
-            addCriterion("wechat_qrcode <>", value, "wechatQrcode");
-            return (Criteria) this;
-        }
-
-        public Criteria andWechatQrcodeGreaterThan(String value) {
-            addCriterion("wechat_qrcode >", value, "wechatQrcode");
-            return (Criteria) this;
-        }
-
-        public Criteria andWechatQrcodeGreaterThanOrEqualTo(String value) {
-            addCriterion("wechat_qrcode >=", value, "wechatQrcode");
-            return (Criteria) this;
-        }
-
-        public Criteria andWechatQrcodeLessThan(String value) {
-            addCriterion("wechat_qrcode <", value, "wechatQrcode");
-            return (Criteria) this;
-        }
-
-        public Criteria andWechatQrcodeLessThanOrEqualTo(String value) {
-            addCriterion("wechat_qrcode <=", value, "wechatQrcode");
-            return (Criteria) this;
-        }
-
-        public Criteria andWechatQrcodeLike(String value) {
-            addCriterion("wechat_qrcode like", value, "wechatQrcode");
-            return (Criteria) this;
-        }
-
-        public Criteria andWechatQrcodeNotLike(String value) {
-            addCriterion("wechat_qrcode not like", value, "wechatQrcode");
-            return (Criteria) this;
-        }
-
-        public Criteria andWechatQrcodeIn(List<String> values) {
-            addCriterion("wechat_qrcode in", values, "wechatQrcode");
-            return (Criteria) this;
-        }
-
-        public Criteria andWechatQrcodeNotIn(List<String> values) {
-            addCriterion("wechat_qrcode not in", values, "wechatQrcode");
-            return (Criteria) this;
-        }
-
-        public Criteria andWechatQrcodeBetween(String value1, String value2) {
-            addCriterion("wechat_qrcode between", value1, value2, "wechatQrcode");
-            return (Criteria) this;
-        }
-
-        public Criteria andWechatQrcodeNotBetween(String value1, String value2) {
-            addCriterion("wechat_qrcode not between", value1, value2, "wechatQrcode");
-            return (Criteria) this;
-        }
-
-        public Criteria andAlipayQrcodeIsNull() {
-            addCriterion("alipay_qrcode is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andAlipayQrcodeIsNotNull() {
-            addCriterion("alipay_qrcode is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andAlipayQrcodeEqualTo(String value) {
-            addCriterion("alipay_qrcode =", value, "alipayQrcode");
-            return (Criteria) this;
-        }
-
-        public Criteria andAlipayQrcodeNotEqualTo(String value) {
-            addCriterion("alipay_qrcode <>", value, "alipayQrcode");
-            return (Criteria) this;
-        }
-
-        public Criteria andAlipayQrcodeGreaterThan(String value) {
-            addCriterion("alipay_qrcode >", value, "alipayQrcode");
-            return (Criteria) this;
-        }
-
-        public Criteria andAlipayQrcodeGreaterThanOrEqualTo(String value) {
-            addCriterion("alipay_qrcode >=", value, "alipayQrcode");
-            return (Criteria) this;
-        }
-
-        public Criteria andAlipayQrcodeLessThan(String value) {
-            addCriterion("alipay_qrcode <", value, "alipayQrcode");
-            return (Criteria) this;
-        }
-
-        public Criteria andAlipayQrcodeLessThanOrEqualTo(String value) {
-            addCriterion("alipay_qrcode <=", value, "alipayQrcode");
-            return (Criteria) this;
-        }
-
-        public Criteria andAlipayQrcodeLike(String value) {
-            addCriterion("alipay_qrcode like", value, "alipayQrcode");
-            return (Criteria) this;
-        }
-
-        public Criteria andAlipayQrcodeNotLike(String value) {
-            addCriterion("alipay_qrcode not like", value, "alipayQrcode");
-            return (Criteria) this;
-        }
-
-        public Criteria andAlipayQrcodeIn(List<String> values) {
-            addCriterion("alipay_qrcode in", values, "alipayQrcode");
-            return (Criteria) this;
-        }
-
-        public Criteria andAlipayQrcodeNotIn(List<String> values) {
-            addCriterion("alipay_qrcode not in", values, "alipayQrcode");
-            return (Criteria) this;
-        }
-
-        public Criteria andAlipayQrcodeBetween(String value1, String value2) {
-            addCriterion("alipay_qrcode between", value1, value2, "alipayQrcode");
-            return (Criteria) this;
-        }
-
-        public Criteria andAlipayQrcodeNotBetween(String value1, String value2) {
-            addCriterion("alipay_qrcode not between", value1, value2, "alipayQrcode");
-            return (Criteria) this;
-        }
-
         public Criteria andEnableIsNull() {
             addCriterion("enable is null");
             return (Criteria) this;
@@ -852,6 +712,66 @@ public class UserExample {
 
         public Criteria andEnableNotBetween(Byte value1, Byte value2) {
             addCriterion("enable not between", value1, value2, "enable");
+            return (Criteria) this;
+        }
+
+        public Criteria andAutoGrabIsNull() {
+            addCriterion("auto_grab is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAutoGrabIsNotNull() {
+            addCriterion("auto_grab is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAutoGrabEqualTo(Byte value) {
+            addCriterion("auto_grab =", value, "autoGrab");
+            return (Criteria) this;
+        }
+
+        public Criteria andAutoGrabNotEqualTo(Byte value) {
+            addCriterion("auto_grab <>", value, "autoGrab");
+            return (Criteria) this;
+        }
+
+        public Criteria andAutoGrabGreaterThan(Byte value) {
+            addCriterion("auto_grab >", value, "autoGrab");
+            return (Criteria) this;
+        }
+
+        public Criteria andAutoGrabGreaterThanOrEqualTo(Byte value) {
+            addCriterion("auto_grab >=", value, "autoGrab");
+            return (Criteria) this;
+        }
+
+        public Criteria andAutoGrabLessThan(Byte value) {
+            addCriterion("auto_grab <", value, "autoGrab");
+            return (Criteria) this;
+        }
+
+        public Criteria andAutoGrabLessThanOrEqualTo(Byte value) {
+            addCriterion("auto_grab <=", value, "autoGrab");
+            return (Criteria) this;
+        }
+
+        public Criteria andAutoGrabIn(List<Byte> values) {
+            addCriterion("auto_grab in", values, "autoGrab");
+            return (Criteria) this;
+        }
+
+        public Criteria andAutoGrabNotIn(List<Byte> values) {
+            addCriterion("auto_grab not in", values, "autoGrab");
+            return (Criteria) this;
+        }
+
+        public Criteria andAutoGrabBetween(Byte value1, Byte value2) {
+            addCriterion("auto_grab between", value1, value2, "autoGrab");
+            return (Criteria) this;
+        }
+
+        public Criteria andAutoGrabNotBetween(Byte value1, Byte value2) {
+            addCriterion("auto_grab not between", value1, value2, "autoGrab");
             return (Criteria) this;
         }
 

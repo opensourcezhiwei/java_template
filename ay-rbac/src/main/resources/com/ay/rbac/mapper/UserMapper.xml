@@ -11,9 +11,8 @@
       <arg column="name" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="tel" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="email" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="wechat_qrcode" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="alipay_qrcode" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="enable" javaType="java.lang.Byte" jdbcType="TINYINT" />
+      <arg column="auto_grab" javaType="java.lang.Byte" jdbcType="TINYINT" />
       <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
       <arg column="update_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
     </constructor>
@@ -77,8 +76,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, username, password, pay_pwd, salt_pay, name, tel, email, wechat_qrcode, alipay_qrcode, 
-    enable, create_time, update_time
+    id, username, password, pay_pwd, salt_pay, name, tel, email, enable, auto_grab, create_time, 
+    update_time
   </sql>
   <select id="selectByExample" parameterType="com.ay.rbac.entity.UserExample" resultMap="BaseResultMap">
     select
@@ -116,14 +115,12 @@
     </selectKey>
     insert into r_user (username, password, pay_pwd, 
       salt_pay, name, tel, 
-      email, wechat_qrcode, alipay_qrcode, 
-      enable, create_time, update_time
-      )
+      email, enable, auto_grab, 
+      create_time, update_time)
     values (#{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{payPwd,jdbcType=VARCHAR}, 
       #{saltPay,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, 
-      #{email,jdbcType=VARCHAR}, #{wechatQrcode,jdbcType=VARCHAR}, #{alipayQrcode,jdbcType=VARCHAR}, 
-      #{enable,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
-      )
+      #{email,jdbcType=VARCHAR}, #{enable,jdbcType=TINYINT}, #{autoGrab,jdbcType=TINYINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.ay.rbac.entity.User">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
@@ -152,14 +149,11 @@
       <if test="email != null">
         email,
       </if>
-      <if test="wechatQrcode != null">
-        wechat_qrcode,
-      </if>
-      <if test="alipayQrcode != null">
-        alipay_qrcode,
-      </if>
       <if test="enable != null">
         enable,
+      </if>
+      <if test="autoGrab != null">
+        auto_grab,
       </if>
       <if test="createTime != null">
         create_time,
@@ -190,14 +184,11 @@
       <if test="email != null">
         #{email,jdbcType=VARCHAR},
       </if>
-      <if test="wechatQrcode != null">
-        #{wechatQrcode,jdbcType=VARCHAR},
-      </if>
-      <if test="alipayQrcode != null">
-        #{alipayQrcode,jdbcType=VARCHAR},
-      </if>
       <if test="enable != null">
         #{enable,jdbcType=TINYINT},
+      </if>
+      <if test="autoGrab != null">
+        #{autoGrab,jdbcType=TINYINT},
       </if>
       <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
@@ -240,14 +231,11 @@
       <if test="record.email != null">
         email = #{record.email,jdbcType=VARCHAR},
       </if>
-      <if test="record.wechatQrcode != null">
-        wechat_qrcode = #{record.wechatQrcode,jdbcType=VARCHAR},
-      </if>
-      <if test="record.alipayQrcode != null">
-        alipay_qrcode = #{record.alipayQrcode,jdbcType=VARCHAR},
-      </if>
       <if test="record.enable != null">
         enable = #{record.enable,jdbcType=TINYINT},
+      </if>
+      <if test="record.autoGrab != null">
+        auto_grab = #{record.autoGrab,jdbcType=TINYINT},
       </if>
       <if test="record.createTime != null">
         create_time = #{record.createTime,jdbcType=TIMESTAMP},
@@ -270,9 +258,8 @@
       name = #{record.name,jdbcType=VARCHAR},
       tel = #{record.tel,jdbcType=VARCHAR},
       email = #{record.email,jdbcType=VARCHAR},
-      wechat_qrcode = #{record.wechatQrcode,jdbcType=VARCHAR},
-      alipay_qrcode = #{record.alipayQrcode,jdbcType=VARCHAR},
       enable = #{record.enable,jdbcType=TINYINT},
+      auto_grab = #{record.autoGrab,jdbcType=TINYINT},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
       update_time = #{record.updateTime,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
@@ -303,14 +290,11 @@
       <if test="email != null">
         email = #{email,jdbcType=VARCHAR},
       </if>
-      <if test="wechatQrcode != null">
-        wechat_qrcode = #{wechatQrcode,jdbcType=VARCHAR},
-      </if>
-      <if test="alipayQrcode != null">
-        alipay_qrcode = #{alipayQrcode,jdbcType=VARCHAR},
-      </if>
       <if test="enable != null">
         enable = #{enable,jdbcType=TINYINT},
+      </if>
+      <if test="autoGrab != null">
+        auto_grab = #{autoGrab,jdbcType=TINYINT},
       </if>
       <if test="createTime != null">
         create_time = #{createTime,jdbcType=TIMESTAMP},
@@ -330,9 +314,8 @@
       name = #{name,jdbcType=VARCHAR},
       tel = #{tel,jdbcType=VARCHAR},
       email = #{email,jdbcType=VARCHAR},
-      wechat_qrcode = #{wechatQrcode,jdbcType=VARCHAR},
-      alipay_qrcode = #{alipayQrcode,jdbcType=VARCHAR},
       enable = #{enable,jdbcType=TINYINT},
+      auto_grab = #{autoGrab,jdbcType=TINYINT},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=BIGINT}
