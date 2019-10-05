@@ -122,6 +122,12 @@ public class UserService {
 			if (!StringUtil.isNull(user.getName())) {
 				createCriteria.andNameLike(user.getName());
 			}
+			if (user.getAutoGrab() != null) {
+				createCriteria.andAutoGrabEqualTo(user.getAutoGrab());
+			}
+			if (user.getEnable() != null) {
+				createCriteria.andEnableEqualTo(user.getEnable());
+			}
 		}
 		return this.userMapper.selectByExample(example);
 	}
