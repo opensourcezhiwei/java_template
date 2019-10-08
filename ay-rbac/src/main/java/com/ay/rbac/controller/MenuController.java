@@ -137,8 +137,7 @@ public class MenuController extends BaseController {
 			JSONObject parseObject = JSONObject.parseObject(param);
 			JSONArray roleArr = parseObject.getJSONArray("roleIds");
 			List<Long> roleIdList = roleArr.toJavaList(Long.class);
-			List<Menu> menuFunctionList = this.menuService
-					.selectByRoleIds(roleIdList.toArray(new Long[roleIdList.size()]));
+			List<Menu> menuFunctionList = this.menuService.selectByRoleIds(roleIdList.toArray(new Long[roleIdList.size()]));
 			if (menuFunctionList == null || menuFunctionList.size() <= 0) {
 				return result(SUCCESS, menuFunctionList);
 			}
@@ -170,8 +169,7 @@ public class MenuController extends BaseController {
 			roleList.forEach(e -> {
 				roleIdList.add(e.getId());
 			});
-			List<Menu> menuFunctionList = this.menuService
-					.selectByRoleIds(roleIdList.toArray(new Long[roleIdList.size()]));
+			List<Menu> menuFunctionList = this.menuService.selectByRoleIds(roleIdList.toArray(new Long[roleIdList.size()]));
 			if (menuFunctionList == null || menuFunctionList.size() <= 0) {
 				return result(SUCCESS, menuFunctionList);
 			}
@@ -252,8 +250,7 @@ public class MenuController extends BaseController {
 			roleList.forEach(e -> {
 				roleIdList.add(e.getId());
 			});
-			List<Menu> menuFunctionList = this.menuService
-					.selectByRoleIds(roleIdList.toArray(new Long[roleIdList.size()]));
+			List<Menu> menuFunctionList = this.menuService.selectByRoleIds(roleIdList.toArray(new Long[roleIdList.size()]));
 			if (menuFunctionList == null || menuFunctionList.size() <= 0) {
 				return result(SUCCESS, menuFunctionList);
 			}
@@ -267,6 +264,24 @@ public class MenuController extends BaseController {
 			return result(SUCCESS, menuDirs);
 		} catch (Exception e) {
 			logger.error("getMenuByUsername 出错 : ", e);
+			return result(MAYBE, NETWORK_IS_ERROR);
+		}
+	}
+
+	@ApiOperation(value = "根据用户加载所有一级菜单")
+	@ApiImplicitParams({ //
+			@ApiImplicitParam(name = "param", value = "{id:xx, name:xx, memo:xx, url:xx, level:xx, parentId:(为空表示一级菜单, 不为空必须存在的id)}", dataType = "string", required = true, paramType = "string"), //
+	})
+	@RequestMapping(value = "/saveMenu", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	public Map<String, Object> saveMenu(HttpServletRequest request) {
+		try {
+			String param = request.getAttribute("param") + "";
+			logger.info("saveMenu param = {}", param);
+			Menu menu = JSONObject.parseObject(param, Menu.class);
+			this.menuService.save(menu);
+			return result(SUCCESS, OK);
+		} catch (Exception e) {
+			logger.error("保存菜单出错 : ", e);
 			return result(MAYBE, NETWORK_IS_ERROR);
 		}
 	}

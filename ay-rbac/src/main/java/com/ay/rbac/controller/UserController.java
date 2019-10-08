@@ -179,7 +179,7 @@ public class UserController extends BaseController {
 
 	@ApiOperation(value = "保存用户信息以及权限")
 	@ApiImplicitParams({ //
-			@ApiImplicitParam(name = "param", value = "{clientId:xx, user:{id:id(有参更新 无参保存),username:'账户',password:'密码',name:'姓名',tel:'电话',email:'邮箱', enable:(0禁用,1启用)}, autoGrab:(0:关闭, 1:启动), roleIds:[岗位id组], departmentIds:[部门id组]}", dataType = "string", required = true, paramType = "string"), //
+			@ApiImplicitParam(name = "param", value = "{clientId:xx, user:{id:id(有参更新 无参保存),username:'账户',password:'密码',name:'姓名',tel:'电话',email:'邮箱', enable:(0禁用,1启用)}, autoGrab:(0:关闭, 1:启动)}, roleIds:[岗位id组], departmentIds:[部门id组]}", dataType = "string", required = true, paramType = "string"), //
 	})
 	@RequestMapping(value = "/saveUser", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	public Map<String, Object> saveUser(HttpServletRequest request) {

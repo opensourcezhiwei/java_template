@@ -1,8 +1,10 @@
 package com.ay.rbac.service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -96,12 +98,27 @@ public class MenuService {
 				menuIds.remove(menu.getId());
 			}
 		}
+		if (menuIds == null || menuIds.size() <= 0) {
+			return 0;
+		}
 		return this.menuDao.insertRoleMenus(roleId, menuIds);
 	}
 
 	@Transactional
 	public int deleteRoleMenuByRoleId(Long roleId) {
 		return this.menuDao.deleteRoleMenuByRoleId(roleId);
+	}
+
+	@Transactional
+	public int save(Menu menu) {
+		if (menu.getId() == null) {
+			menu.setCreateTime(new Date());
+			return this.menuMapper.insert(menu);
+		}
+		Menu old = this.menuMapper.selectByPrimaryKey(menu.getId());
+		BeanUtils.copyProperties(menu, old, "id", "createTime");
+		old.setUpdateTime(new Date());
+		return this.menuMapper.updateByPrimaryKey(old);
 	}
 
 }

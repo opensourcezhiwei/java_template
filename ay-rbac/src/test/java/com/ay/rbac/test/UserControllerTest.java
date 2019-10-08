@@ -1,7 +1,9 @@
 package com.ay.rbac.test;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.junit.Test;
@@ -28,7 +30,7 @@ public class UserControllerTest {
 		paramMap.put("username", username);
 		paramMap.put("password", password);
 		System.out.println(EncUtil.toMD5(password));
-		String result = HttpClientUtil.sendPostByJson(url_local + "loginNoValid", JSONUtil.map2Json(paramMap));
+		String result = HttpClientUtil.sendPostByJson(url_prod + "loginNoValid", JSONUtil.map2Json(paramMap));
 		System.out.println(result);
 		JSONObject parseObject = JSONObject.parseObject(result);
 		// 1. 查询部门用户业务
@@ -39,9 +41,27 @@ public class UserControllerTest {
 		headerMap.put("timestamp", timestamp);
 		headerMap.put("sessionId", "155392345455843cb7ae49d4443fbb7f5541bf7a7aea1");
 		headerMap.put("encrypt", RandomUtil.generateMixString(5) + EncUtil.hexSha1(clientId + timestamp + key) + RandomUtil.generateMixString(6));
-		queryDepartmentUsers(paramMap, messageObj, headerMap);
+		
+		paramMap.put("clientId", messageObj.getString("clientId"));
+		//{"clientId":"yq","user":{"username":"test","name":"df","departmentIds":[3],"roleIds":[1]}}
+		Map<String, Object> userMap = new HashMap<>();
+		userMap.put("username", "test");
+		userMap.put("name", "df");
+		List<Long> departmentIds = new ArrayList<>();
+		departmentIds.add(3l);
+		userMap.put("departmentIds", departmentIds);
+		List<Long> roleIds = new ArrayList<>();
+		departmentIds.add(1l);
+		userMap.put("roleIds", roleIds);
+		saveUser(paramMap, headerMap);
+//		queryDepartmentUsers(paramMap, messageObj, headerMap);
 //	getLoginNoValidTest(paramMap, messageObj, headerMap);
 //	getMenuByUsername(paramMap, messageObj, headerMap);
+	}
+
+	private void saveUser(Map<String, Object> paramMap, Map<String, String> headerMap) {
+		String result = HttpClientUtil.sendPostByJson(url_prod + "saveUser", JSONUtil.map2Json(paramMap), headerMap);
+		System.out.println(result);
 	}
 
 	private void getMenuByUsername(Map<String, Object> paramMap, JSONObject messageObj, Map<String, String> headerMap) {
