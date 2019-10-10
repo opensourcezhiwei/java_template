@@ -2,21 +2,25 @@ package com.ay.rbac.controller;
 
 import java.util.List;
 import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.alibaba.fastjson.JSONObject;
 import com.ay.common.controller.base.BaseController;
-import com.ay.common.util.StringUtil;
 import com.ay.rbac.entity.Department;
 import com.ay.rbac.entity.Role;
 import com.ay.rbac.service.DepartmentService;
 import com.ay.rbac.service.RoleService;
 import com.ay.rbac.vo.RoleVo;
+import com.ay.session.mysql.entity.Session;
+
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
@@ -34,19 +38,13 @@ public class RoleController extends BaseController {
 
 	@ApiOperation(value = "根据用户加载角色")
 	@ApiImplicitParams({ //
-			@ApiImplicitParam(name = "param", value = "{username:xx}", dataType = "string", required = true, paramType = "string"), //
+			@ApiImplicitParam(name = "param", value = "{}", dataType = "string", required = true, paramType = "string"), //
 	})
 	@RequestMapping(value = "/getRolesByUsername", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	public Map<String, Object> getRolesByUsername(HttpServletRequest request) {
-		String param = request.getAttribute("param") + "";
-		logger.info("getRolesByUsername param = {}", param);
 		try {
-			JSONObject parseObject = JSONObject.parseObject(param);
-			String username = parseObject.getString("username");
-			if (StringUtil.isNull(username)) {
-				return result(ERROR, "username is null!");
-			}
-			List<Role> roleList = this.roleService.selectByUsername(username);
+			Session session = (Session) request.getAttribute("session");
+			List<Role> roleList = this.roleService.selectByUsername(session.getUsername());
 			return result(SUCCESS, roleList);
 		} catch (Exception e) {
 			logger.error("getRolesByUsername 出错 : ", e);

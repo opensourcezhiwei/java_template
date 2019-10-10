@@ -9,6 +9,13 @@
 		WHERE u.username = #{username} 
 	</select>
 	
+	<select id="selectByRoleId" resultType="com.ay.rbac.entity.Department">
+		SELECT d.*
+		FROM r_department d 
+		INNER JOIN r_department_role dr ON d.id = dr.r_department_id
+		WHERE dr.r_role_id = #{roleId}
+	</select>
+	
 	<insert id="insertUserDepartment">
 		INSERT INTO r_user_department(r_user_id, r_department_id) VALUES 
 		<foreach collection="departmentIds" item="departmentId" separator=",">
@@ -37,5 +44,5 @@
 			</if>
 		</where>
 	</delete>
-
+	
 </mapper>

@@ -17,4 +17,6 @@ public interface DepartmentDao {
 
 	int changeDepartmentIds(@Param("newDepartmentId") Long newDepartmentId, @Param("oldDepartmentIds") Set<Long> oldDepartmentIds);
 
+	List<Department> selectByRoleId(@Param("roleId") Long roleId);
+
 }

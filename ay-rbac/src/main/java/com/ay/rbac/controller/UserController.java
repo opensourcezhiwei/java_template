@@ -192,6 +192,7 @@ public class UserController extends BaseController {
 				return result(CLIENT_ID_NOT_EXIST, "clientId is null!");
 			}
 			User user = JSONObject.parseObject(parseObject.getString("user"), User.class);
+			user.setPassword(EncUtil.toMD5(user.getPassword()));
 			List<Long> roleIds = parseObject.getJSONArray("roleIds").toJavaList(Long.class);
 			List<Long> departmentIds = parseObject.getJSONArray("departmentIds").toJavaList(Long.class);
 			this.userService.save(clientId, user, roleIds, departmentIds);

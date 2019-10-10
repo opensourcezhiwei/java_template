@@ -14,8 +14,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.ay.common.util.DateUtil;
 import com.ay.rbac.dao.RoleDao;
+import com.ay.rbac.entity.Department;
 import com.ay.rbac.entity.Role;
 import com.ay.rbac.mapper.RoleMapper;
+import com.ay.rbac.vo.QRoleVo;
 import com.ay.rbac.vo.RoleVo;
 
 @Service
@@ -29,6 +31,9 @@ public class RoleService {
 
 	@Autowired
 	private MenuService menuService;
+
+	@Autowired
+	private DepartmentService departmentService;
 
 	public List<Role> selectByUsername(String username) {
 		return this.roleDao.selectByUsername(username);
@@ -49,21 +54,25 @@ public class RoleService {
 	}
 
 	public List<RoleVo> getAllRoleVo() {
-		List<RoleVo> allRoles = this.roleDao.getAllRoleVo();
+		List<QRoleVo> allRoles = this.roleDao.getAllRoleVo();
 		Map<Long, RoleVo> allRolesMap = new HashMap<>();
-		for (RoleVo allRole : allRoles) {
+		for (QRoleVo allRole : allRoles) {
 			RoleVo vo = allRolesMap.get(allRole.getId());
 			if (vo == null) {
 				vo = new RoleVo();
-				BeanUtils.copyProperties(allRole, vo, "menuIds");
+				BeanUtils.copyProperties(allRole, vo, "menuId");
 			}
 			List<Long> menuIds = vo.getMenuIds();
 			if (menuIds == null) {
 				menuIds = new ArrayList<>();
 				vo.setMenuIds(menuIds);
 			}
-			if (allRole.getMenuIds() != null) {
-				menuIds.add(allRole.getMenuIds().get(0));
+			if (allRole.getMenuId() != null) {
+				menuIds.add(allRole.getMenuId());
+			}
+			List<Long> departmentIds = this.departmentService.selectIdsByRoleId(allRole.getId());
+			if(departmentIds != null && departmentIds.size() > 0) {
+				vo.setDepartmentId(departmentIds.get(0));
 			}
 			allRolesMap.put(allRole.getId(), vo);
 		}

@@ -28,8 +28,8 @@
 		SELECT r_role_id FROM r_user_role WHERE r_user_id = #{userId}
 	</select>
 	
-	<select id="getAllRoleVo" resultType="com.ay.rbac.vo.RoleVo">
-		SELECT r.id, r.name, r.memo, r.create_time createTime, r.update_time updateTime, rm.r_menu_id menuIds
+	<select id="getAllRoleVo" resultType="com.ay.rbac.vo.QRoleVo">
+		SELECT r.id, r.name, r.memo, r.create_time createTime, r.update_time updateTime, rm.r_menu_id menuId
 		FROM r_role r 
 		INNER JOIN r_role_menu rm ON r.id = rm.r_role_id 
 	</select>
