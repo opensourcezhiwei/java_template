@@ -27,10 +27,10 @@ import com.ay.rbac.entity.Role;
 import com.ay.rbac.service.MenuService;
 import com.ay.rbac.service.RoleService;
 import com.ay.rbac.vo.MenuVo;
+import com.ay.session.mysql.entity.Session;
 
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
-import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiOperation;
 
 @RestController
@@ -152,19 +152,15 @@ public class MenuController extends BaseController {
 
 	@ApiOperation(value = "根据用户加载所有菜单功能")
 	@ApiImplicitParams({ //
-			@ApiImplicitParam(name = "param", value = "{username:xx}", dataType = "string", required = true, paramType = "string"), //
+			@ApiImplicitParam(name = "param", value = "{}", dataType = "string", required = true, paramType = "string"), //
 	})
 	@RequestMapping(value = "/getMenuByUsername", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	public @ResponseBody Map<String, Object> getMenuByUsername(HttpServletRequest request) {
 		String param = request.getAttribute("param") + "";
 		logger.info("getMenuByUsername param = {}", param);
 		try {
-			JSONObject parseObject = JSONObject.parseObject(param);
-			String username = parseObject.getString("username");
-			if (StringUtil.isNull(username)) {
-				return result(ERROR, "username is null!");
-			}
-			List<Role> roleList = this.roleService.selectByUsername(username);
+			Session session = (Session) request.getAttribute("session");
+			List<Role> roleList = this.roleService.selectByUsername(session.getUsername());
 			List<Long> roleIdList = new ArrayList<>();
 			roleList.forEach(e -> {
 				roleIdList.add(e.getId());
@@ -268,7 +264,7 @@ public class MenuController extends BaseController {
 		}
 	}
 
-	@ApiOperation(value = "根据用户加载所有一级菜单")
+	@ApiOperation(value = "保存菜单")
 	@ApiImplicitParams({ //
 			@ApiImplicitParam(name = "param", value = "{id:xx, name:xx, memo:xx, url:xx, level:xx, parentId:(为空表示一级菜单, 不为空必须存在的id)}", dataType = "string", required = true, paramType = "string"), //
 	})
@@ -285,4 +281,23 @@ public class MenuController extends BaseController {
 			return result(MAYBE, NETWORK_IS_ERROR);
 		}
 	}
+
+	@ApiOperation(value = "删除菜单根据id")
+	@ApiImplicitParams({ //
+			@ApiImplicitParam(name = "param", value = "{id:xx}", dataType = "string", required = true, paramType = "string"), //
+	})
+	@RequestMapping(value = "/delMenuById", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	public Map<String, Object> delMenuById(HttpServletRequest request) {
+		try {
+			String param = request.getAttribute("param") + "";
+			logger.info("delMenuById param = {}", param);
+			JSONObject parseObject = JSONObject.parseObject(param);
+			this.menuService.deleteMenuById(parseObject.getLong("id"));
+			return result(SUCCESS, OK);
+		} catch (Exception e) {
+			logger.error("保存菜单出错 : ", e);
+			return result(MAYBE, NETWORK_IS_ERROR);
+		}
+	}
+
 }

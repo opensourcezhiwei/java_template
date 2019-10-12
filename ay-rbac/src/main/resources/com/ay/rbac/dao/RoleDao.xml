@@ -60,6 +60,13 @@
 	<insert id="saveDepartmentRole">
 		INSERT INTO r_department_role(r_department_id, r_role_id) VALUES (#{departmentId}, #{roleId})
 	</insert>
+	
+	<insert id="insertRoleMenus">
+		INSERT INTO r_role_menu(r_role_id, r_menu_id) VALUES 
+		<foreach collection="menuIds" item="menuId" separator=",">
+			(#{roleId}, #{menuId})
+		</foreach>
+	</insert>
 
 	<delete id="deleteRoleIdsByUserId">
 		DELETE FROM r_user_role WHERE r_user_id = #{userId}

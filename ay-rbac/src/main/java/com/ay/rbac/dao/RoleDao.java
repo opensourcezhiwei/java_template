@@ -78,4 +78,6 @@ public interface RoleDao {
 
 	int deleteByIds(@Param("roleIds") List<Long> roleIds);
 
+	int insertRoleMenus(@Param("roleId") Long roleId, @Param("menuIds") Set<Long> menuIds);
+
 }

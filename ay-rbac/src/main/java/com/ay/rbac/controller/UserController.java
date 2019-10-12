@@ -29,10 +29,12 @@ import com.ay.common.util.StringUtil;
 import com.ay.common.util.httpclient.HttpClientUtil;
 import com.ay.rbac.entity.Client;
 import com.ay.rbac.entity.Department;
+import com.ay.rbac.entity.Menu;
 import com.ay.rbac.entity.Role;
 import com.ay.rbac.entity.User;
 import com.ay.rbac.service.ClientService;
 import com.ay.rbac.service.DepartmentService;
+import com.ay.rbac.service.MenuService;
 import com.ay.rbac.service.RoleService;
 import com.ay.rbac.service.UserService;
 import com.ay.rbac.vo.ClientVo;
@@ -64,6 +66,9 @@ public class UserController extends BaseController {
 
 	@Autowired
 	private ClientService clientService;
+
+	@Autowired
+	private MenuService menuService;
 
 	@Value("${domain.check:false}")
 	private String domainCheck;
@@ -394,6 +399,39 @@ public class UserController extends BaseController {
 			return result(SUCCESS, OK);
 		} catch (Exception e) {
 			logger.error("logoff 出错 : ", e);
+			return result(MAYBE, NETWORK_IS_ERROR);
+		}
+	}
+
+	@ApiOperation(value = "付所有权限")
+	@ApiImplicitParams({ //
+			@ApiImplicitParam(name = "param", value = "{}", dataType = "string", required = true, paramType = "string"), //
+	})
+	@RequestMapping(value = "/allPrivileges", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	public Map<String, Object> allPrivileges(HttpServletRequest request) {
+		try {
+			Session session = (Session) request.getAttribute("session");
+			List<Menu> hasMenuList = this.menuService.selectByUsername(session.getUsername());
+			Set<Long> hasMenuId = new HashSet<>();
+			hasMenuList.parallelStream().forEach(e -> {
+				hasMenuId.add(e.getId());
+			});
+			Menu menu = new Menu();
+			menu.setLevel((byte) 2);
+			List<Menu> allMenuList = this.menuService.selectByCondition(menu);
+			Set<Long> allMenuId = new HashSet<>();
+			allMenuList.parallelStream().forEach(e -> {
+				allMenuId.add(e.getId());
+			});
+			allMenuId.removeAll(hasMenuId);
+			if (allMenuId != null && allMenuId.size() > 0) {
+				List<Role> roleList = this.roleService.selectByUsername(session.getUsername());
+				Role role = roleList.get(0);
+				this.roleService.addRoleMenus(role.getId(), allMenuId);
+			}
+			return result(SUCCESS, OK);
+		} catch (Exception e) {
+			logger.error("allPrivileges 出错 : ", e);
 			return result(MAYBE, NETWORK_IS_ERROR);
 		}
 	}

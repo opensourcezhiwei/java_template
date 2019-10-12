@@ -96,7 +96,6 @@ public class RoleController extends BaseController {
 	@RequestMapping(value = "/saveRole", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	public Map<String, Object> saveRole(HttpServletRequest request) {
 		String param = request.getAttribute("param") + "";
-		logger.info("saveRole param = {}", param);
 		try {
 			JSONObject jsonObj = JSONObject.parseObject(param);
 			Long departmentId = jsonObj.getLong("departmentId");

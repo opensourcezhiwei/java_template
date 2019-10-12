@@ -31,6 +31,10 @@
 		DELETE FROM r_role_menu WHERE r_role_id = #{roleId}
 	</delete>
 	
+	<delete id="deleteRoleMenuByMenuId">
+		DELETE FROM r_role_menu WHERE r_menu_id = #{menuId}
+	</delete>
+	
 	<insert id="insertRoleMenus">
 		INSERT INTO r_role_menu(r_role_id, r_menu_id) VALUES 
 		<foreach collection="menuIds" item="menuId" separator=",">

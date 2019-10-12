@@ -19,8 +19,7 @@ public interface MenuDao {
 	/**
 	 * 根据子菜单id加载父节点菜单
 	 * 
-	 * @param childMenuIds
-	 *            子节点ids
+	 * @param childMenuIds 子节点ids
 	 * @return
 	 */
 	List<Menu> selectParentByChildIds(@Param("childMenuIds") Long... childMenuIds);
@@ -30,5 +29,7 @@ public interface MenuDao {
 	int insertRoleMenus(@Param("roleId") Long roleId, @Param("menuIds") List<Long> menuIds);
 
 	int deleteRoleMenuByRoleId(@Param("roleId") Long roleId);
+
+	int deleteRoleMenuByMenuId(@Param("menuId") Long menuId);
 
 }

@@ -71,7 +71,7 @@ public class RoleService {
 				menuIds.add(allRole.getMenuId());
 			}
 			List<Long> departmentIds = this.departmentService.selectIdsByRoleId(allRole.getId());
-			if(departmentIds != null && departmentIds.size() > 0) {
+			if (departmentIds != null && departmentIds.size() > 0) {
 				vo.setDepartmentId(departmentIds.get(0));
 			}
 			allRolesMap.put(allRole.getId(), vo);
@@ -180,6 +180,11 @@ public class RoleService {
 		departmentIds.forEach(departmentId -> {
 			this.deleteDepartmentRoleByDepartmentIdAndRoleId(departmentId, null);
 		});
+	}
+
+	@Transactional
+	public int addRoleMenus(Long roleId, Set<Long> menuId) {
+		return this.roleDao.insertRoleMenus(roleId, menuId);
 	}
 
 }

@@ -1,8 +1,11 @@
 package com.ay.rbac.service;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
+import java.util.TreeSet;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,11 +32,15 @@ public class MenuService {
 	private RoleService roleService;
 
 	/** 加载菜单根据角色id */
-	public List<Menu> selectByRoleIds(Long... ids) {
-		if (ids == null || ids.length <= 0) {
+	public List<Menu> selectByRoleIds(Long... roleIds) {
+		if (roleIds == null || roleIds.length <= 0) {
 			return null;
 		}
-		return this.menuDao.selectByRoleIds(ids);
+		List<Menu> menuList = this.menuDao.selectByRoleIds(roleIds);
+		menuList = menuList.stream().collect(Collectors.collectingAndThen(//
+				Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(o -> o.getId()))), //
+				ArrayList::new));
+		return menuList;
 	}
 
 	/** 加载菜单根据用户名 */
@@ -73,7 +80,9 @@ public class MenuService {
 		MenuExample example = new MenuExample();
 		Criteria createCriteria = example.createCriteria();
 		if (menu != null) {
-
+			if (menu.getLevel() != null) {
+				createCriteria.andLevelEqualTo(menu.getLevel());
+			}
 		}
 		return this.menuMapper.selectByExample(example);
 	}
@@ -119,6 +128,12 @@ public class MenuService {
 		BeanUtils.copyProperties(menu, old, "id", "createTime");
 		old.setUpdateTime(new Date());
 		return this.menuMapper.updateByPrimaryKey(old);
+	}
+
+	@Transactional
+	public int deleteMenuById(Long id) {
+		this.menuDao.deleteRoleMenuByMenuId(id);
+		return this.menuMapper.deleteByPrimaryKey(id);
 	}
 
 }
