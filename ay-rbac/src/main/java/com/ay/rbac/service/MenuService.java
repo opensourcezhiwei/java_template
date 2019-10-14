@@ -136,4 +136,11 @@ public class MenuService {
 		return this.menuMapper.deleteByPrimaryKey(id);
 	}
 
+	public List<Menu> selectChildrenByParentId(Long parentId) {
+		Menu menu = new Menu();
+		menu.setParentId(parentId);
+		List<Menu> menuList = this.selectByCondition(menu);
+		return menuList;
+	}
+
 }

@@ -6,6 +6,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeSet;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -112,12 +114,14 @@ public class MenuController extends BaseController {
 
 	@ApiOperation(value = "根据菜单目录")
 	@ApiImplicitParams({ //
-			@ApiImplicitParam(name = "param", value = "{username:xx}", dataType = "string", required = true, paramType = "string"), //
+			@ApiImplicitParam(name = "param", value = "{level:(0,1,2)}", dataType = "string", required = true, paramType = "string"), //
 	})
 	@RequestMapping(value = "/getAllMenu", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-	public Map<String, Object> getAllMenu() {
+	public Map<String, Object> getAllMenu(HttpServletRequest request) {
 		try {
-			List<Menu> allMenu = this.menuService.selectByCondition(null);
+			String param = request.getAttribute("param") + "";
+			Menu menu = JSONObject.parseObject(param, Menu.class);
+			List<Menu> allMenu = this.menuService.selectByCondition(menu);
 			return result(SUCCESS, allMenu);
 		} catch (Exception e) {
 			logger.info("getAllMenu 出错 : ", e);
@@ -192,6 +196,9 @@ public class MenuController extends BaseController {
 			if (fileVo == null) {
 				fileVo = new MenuVo();
 				Menu file = menuIdMap.get(function.getParentId());
+				if (file == null) {
+					continue;
+				}
 				BeanUtils.copyProperties(file, fileVo, "childrenMenu");
 				fileMenuMap.put(function.getParentId(), fileVo);
 				fileMenuList.add(fileVo);
@@ -225,6 +232,25 @@ public class MenuController extends BaseController {
 			children.add(fileVo);
 		}
 		return dirMenuList;
+	}
+
+	@ApiOperation(value = "根据用户加载所有一级菜单")
+	@ApiImplicitParams({ //
+			@ApiImplicitParam(name = "param", value = "{}", dataType = "string", required = true, paramType = "string"), //
+	})
+	@RequestMapping(value = "/getMenuFileByTree", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+	public @ResponseBody Map<String, Object> getMenuFileByTree(HttpServletRequest request) {
+		try {
+			Menu menu = new Menu();
+			List<Menu> menuList = this.menuService.selectByCondition(menu);
+			if(menuList == null || menuList.size() <= 0) {
+				return result(SUCCESS, OK);
+			}
+			return result(SUCCESS, OK);
+		} catch (Exception e) {
+			logger.error("getMenuFileByTree 出错 : ", e);
+			return result(MAYBE, NETWORK_IS_ERROR);
+		}
 	}
 
 	@ApiOperation(value = "根据用户加载所有一级菜单")
