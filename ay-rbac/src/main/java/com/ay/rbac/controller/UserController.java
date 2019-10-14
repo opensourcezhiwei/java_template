@@ -136,7 +136,7 @@ public class UserController extends BaseController {
 
 	@ApiOperation(value = "获取用户信息")
 	@ApiImplicitParams({ //
-			@ApiImplicitParam(name = "param", value = "{username : username}", dataType = "string", required = true, paramType = "string"), //
+			@ApiImplicitParam(name = "param", value = "{}", dataType = "string", required = true, paramType = "string"), //
 	})
 	@RequestMapping(value = "/getLoginUserNoValid", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
 	public @ResponseBody Map<String, Object> getLoginUser(HttpServletRequest request) {
