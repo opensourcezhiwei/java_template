@@ -19,13 +19,13 @@ public class DateUtil {
 	public static String YY_MM_DD_HH_MM_SS_2 = "yyyy/MM/dd HH:mm:ss";
 	public static String YY_MM_DD_T_HH_MM_SS = "yyyy-MM-dd'T'HH:mm:ss";
 	public static String YY_MM_DD_T_HH_MM_SS_Z = "yyyy-MM-dd'T'HH:mm:ssZ";
-	public static String yy_MM_DD_T_HH_MM_SS_XXX= "yyyy-MM-dd'T'HH:mm:ss.SSS";
+	public static String yy_MM_DD_T_HH_MM_SS_XXX = "yyyy-MM-dd'T'HH:mm:ss.SSS";
 	public static String YYMMDDHHMMSS = "yyyyMMddHHmmss";
 	public static String YYMMDDHHMMSSSSS = "yyyyMMddHHmmssSSS";
 	public static String YYMMDDHHMMSSXXX = "yyyy-MM-dd'T'HH:mm:ssXXX"; // 2018-05-24T22:50:35-04:00
 	public static String YYMMDDHHMMSSXXXZ = "yyyy-MM-dd'T'HH:mm:ssXXXZ"; // 2018-05-24T22:50:35-04:00
 	public static String YY_MM_DD_CHINA = "yyyy年MM月dd日";
-	
+
 	public static final String GMT_4 = "GMT-4"; // 美东时间
 	public static final String GMT_8 = "GMT+8"; // 中国时间
 
@@ -46,7 +46,7 @@ public class DateUtil {
 		c.setTimeZone(TimeZone.getTimeZone(DateUtil.GMT_8));
 		return c.getTime();
 	}
-	
+
 	// 获取当前时间
 	public static String getCurDate() {
 		return sdf1.format(new Date(System.currentTimeMillis()));
@@ -74,10 +74,8 @@ public class DateUtil {
 	/**
 	 * 根据连接符join 连接日期
 	 *
-	 * @param differDay
-	 *            相差的天数
-	 * @param join
-	 *            2016-05-31
+	 * @param differDay 相差的天数
+	 * @param join      2016-05-31
 	 */
 	public static String getDaysAgo(int interval, String join) {
 		Date date = new Date();
@@ -114,10 +112,8 @@ public class DateUtil {
 	/**
 	 * 根据连接符join 连接日期
 	 *
-	 * @param differDay
-	 *            相差的天数
-	 * @param join
-	 *            2016-05-31
+	 * @param differDay 相差的天数
+	 * @param join      2016-05-31
 	 */
 	public static String getTodayDateDifferDay(int differDay, String join) {
 		Calendar c = Calendar.getInstance();
@@ -145,8 +141,7 @@ public class DateUtil {
 	public static Date getNowDiffer(long differAgo) {
 		return new Date(System.currentTimeMillis() - differAgo);
 	}
-	
-	
+
 	/**
 	 * 时间转换格式
 	 */
@@ -181,8 +176,7 @@ public class DateUtil {
 	/**
 	 * 根据毫秒数获取时分秒格式
 	 * 
-	 * @param mills
-	 *            毫秒数
+	 * @param mills 毫秒数
 	 * @return 时分秒格式化
 	 */
 	public static String getHHmmssByMills(Long mills) {
@@ -267,41 +261,50 @@ public class DateUtil {
 	}
 
 	/**
-	 *  获取某个月的开始时间
+	 * 获取某个月的开始时间
+	 * 
 	 * @param date
 	 * @return
 	 */
 	public static Date getMonthStart(Date date) {
-
-		Calendar calendar = Calendar.getInstance();
-
-		calendar.setTime(date);
-
-		int index = calendar.get(Calendar.DAY_OF_MONTH);
-
-		calendar.add(Calendar.DATE, (1 - index));
-
-		return calendar.getTime();
-
+		return getMonthStartByMonthCount(date, 0);
 	}
 
 	/**
-	 *  获取某个月的结束时间
+	 * 获取某个月的结束时间
+	 * 
 	 * @param date
 	 * @return
 	 */
 	public static Date getMonthEnd(Date date) {
+		return getMonthEndByMonthCount(date, 0);
+	}
 
-		Calendar calendar = Calendar.getInstance();
+	/**
+	 * 获取时间相差月的第一天
+	 * 
+	 * @param date
+	 * @param count
+	 * @return
+	 */
+	public static Date getMonthStartByMonthCount(Date date, int count) {
+		Calendar cal = Calendar.getInstance();
+		cal.add(Calendar.MONTH, count);
+		cal.set(Calendar.DAY_OF_MONTH, 1);
+		return cal.getTime();
+	}
 
-		calendar.setTime(date);
-
-		calendar.add(Calendar.MONTH, 1);
-
-		int index = calendar.get(Calendar.DAY_OF_MONTH);
-
-		calendar.add(Calendar.DATE, (-index));
-
-		return calendar.getTime();
+	/**
+	 * 获取时间相差月的最后一天
+	 * 
+	 * @param date
+	 * @param count
+	 * @return
+	 */
+	public static Date getMonthEndByMonthCount(Date date, int count) {
+		Calendar cal = Calendar.getInstance();
+		cal.add(Calendar.MONTH, count + 1);
+		cal.set(Calendar.DAY_OF_MONTH, 0);
+		return cal.getTime();
 	}
 }

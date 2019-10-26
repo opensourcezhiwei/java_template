@@ -224,7 +224,8 @@ public interface Dictionary {
 	public enum PayStatusEnum {
 		PAYING((byte) 1, "支付中"), SUCCESS((byte) 2, "支付成功"), FAILED((byte) 3, "支付失败"), //
 		MAYBE((byte) 4, "支付异常"), LOCKED((byte) 5, "锁定"), //
-		TO_GRAB((byte) 6, "待抢单"), GRABED((byte) 7, "抢单完成");
+		TO_GRAB((byte) 6, "待抢单"), GRABED((byte) 7, "抢单完成"), //
+		REFRESH((byte) 8, "重新生成"), REFUND((byte) 9, "退款中");
 		private Byte key;
 		private String value;
 
@@ -239,6 +240,19 @@ public interface Dictionary {
 
 		public String getValue() {
 			return value;
+		}
+
+		public static String getValueByKey(Byte key) {
+			if (key == null) {
+				return null;
+			}
+			PayStatusEnum[] values = PayStatusEnum.values();
+			for (PayStatusEnum payStatusEnum : values) {
+				if (payStatusEnum.key.byteValue() == key.byteValue()) {
+					return payStatusEnum.value;
+				}
+			}
+			return null;
 		}
 	}
 
