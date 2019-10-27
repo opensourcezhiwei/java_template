@@ -74,7 +74,7 @@ public interface Dictionary {
 	 */
 	interface MoneyType {
 		// 1: 充值记录, 2: 下注记录, 3:派彩记录, 4: 退款记录, 5: 转账记录, 6: 反水记录, 7:取款记录, 8:代理佣金派发,
-		// 9:代理佣金提取, 10:解冻/冻结资金, 11.活动奖金, 12:人工补单, 13:礼物, 14:抢单记录
+		// 9:代理佣金提取, 10:解冻/冻结资金, 11.活动奖金, 12:人工补单, 13:礼物, 14:抢单记录, 15:公司提款
 		int DEPOSIT = 1;
 		int BET = 2;
 		int PAYOFF = 3;
@@ -89,6 +89,7 @@ public interface Dictionary {
 		int MANUAL_OPERATOR = 12;
 		int GIFT = 13;
 		int GRAB = 14;
+		int CLIENT_WITHDRAWL = 15;
 	}
 
 	/**
