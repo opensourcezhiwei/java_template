@@ -7,6 +7,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
 import com.ay.common.constants.StatusCode;
+import com.ay.common.util.StringUtil;
 
 /**
  * 控制层基类,所有控制层必须继承此基类
@@ -20,25 +21,41 @@ public class BaseController implements StatusCode {
 	 * 获取真实ip
 	 */
 	protected String getIpAddr(HttpServletRequest request) {
-		String ip = request.getHeader("x-forwarded-for");
-		if (ip == null) {
-			if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
-				ip = request.getHeader("Proxy-Client-IP");
-			}
-			if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
-				ip = request.getHeader("WL-Proxy-Client-IP");
-			}
-			if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
-				ip = request.getHeader("HTTP_CLIENT_IP");
-			}
-			if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
-				ip = request.getHeader("HTTP_X_FORWARDED_FOR");
-			}
-			if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
-				ip = request.getRemoteAddr();
+
+		String ip = request.getHeader("X-Forwarded-For");
+		if (!StringUtil.isNull(ip) && !"unKnown".equalsIgnoreCase(ip)) {
+			// 多次反向代理后会有多个ip值，第一个ip才是真实ip
+			int index = ip.indexOf(",");
+			if (index != -1) {
+				return ip.substring(0, index);
+			} else {
+				return ip;
 			}
 		}
-		return ip;
+		ip = request.getHeader("X-Real-IP");
+		if (!StringUtil.isNull(ip) && !"unKnown".equalsIgnoreCase(ip)) {
+			return ip;
+		}
+		return request.getRemoteAddr();
+//		String ip = request.getHeader("x-forwarded-for");
+//		if (ip == null) {
+//			if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+//				ip = request.getHeader("Proxy-Client-IP");
+//			}
+//			if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+//				ip = request.getHeader("WL-Proxy-Client-IP");
+//			}
+//			if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+//				ip = request.getHeader("HTTP_CLIENT_IP");
+//			}
+//			if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+//				ip = request.getHeader("HTTP_X_FORWARDED_FOR");
+//			}
+//			if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+//				ip = request.getRemoteAddr();
+//			}
+//		}
+//		return ip;
 	}
 
 	protected Map<String, Object> result(String code, Object msg) {
