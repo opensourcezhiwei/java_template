@@ -224,7 +224,7 @@ public interface Dictionary {
 	 */
 	public enum PayStatusEnum {
 		PAYING((byte) 1, "支付中"), SUCCESS((byte) 2, "支付成功"), FAILED((byte) 3, "支付失败"), //
-		MAYBE((byte) 4, "支付异常"), LOCKED((byte) 5, "锁定"), //
+		MAYBE((byte) 4, "支付异常"), LOCKED((byte) 5, "抢单锁定"), //
 		TO_GRAB((byte) 6, "待抢单"), GRABED((byte) 7, "抢单完成"), //
 		REFRESH((byte) 8, "重新生成"), REFUND((byte) 9, "退款中");
 		private Byte key;
@@ -255,6 +255,50 @@ public interface Dictionary {
 			}
 			return null;
 		}
+	}
+
+	/**
+	 * 直播状态
+	 * 
+	 * @author jackson
+	 *
+	 */
+	public enum LiveStatus {
+
+		NORMAL((byte) 1, "正常"), //
+		DISABLE((byte) 0, "禁止登陆"), //
+		LIVING((byte) 2, "直播中"), //
+		REALNAME((byte) 3, "待认证");
+
+		private Byte key;
+		private String value;
+
+		private LiveStatus(Byte key, String value) {
+			this.key = key;
+			this.value = value;
+		}
+
+		public Byte getKey() {
+			return key;
+		}
+
+		public String getValue() {
+			return value;
+		}
+
+		public static String getValueByKey(Byte key) {
+			if (key == null) {
+				return null;
+			}
+			LiveStatus[] values = LiveStatus.values();
+			for (LiveStatus liveStatusEnum : values) {
+				if (liveStatusEnum.key.byteValue() == key.byteValue()) {
+					return liveStatusEnum.value;
+				}
+			}
+			return null;
+		}
+
 	}
 
 	/**
