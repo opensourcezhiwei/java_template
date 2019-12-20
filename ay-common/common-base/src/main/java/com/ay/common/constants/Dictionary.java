@@ -226,7 +226,8 @@ public interface Dictionary {
 		PAYING((byte) 1, "支付中"), SUCCESS((byte) 2, "支付成功"), FAILED((byte) 3, "支付失败"), //
 		MAYBE((byte) 4, "支付异常"), LOCKED((byte) 5, "抢单锁定"), //
 		TO_GRAB((byte) 6, "待抢单"), GRABED((byte) 7, "抢单完成"), //
-		REFRESH((byte) 8, "重新生成"), REFUND((byte) 9, "退款中");
+		REFRESH((byte) 8, "重新生成"), REFUND((byte) 9, "退款中"), //
+		TO_AUDIT((byte) 10, "待审核"), AUDITED((byte) 11, "审核通过"), AUDIT_FAIL((byte) 12, "审核不通过");
 		private Byte key;
 		private String value;
 

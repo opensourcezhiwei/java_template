@@ -51,6 +51,7 @@ public interface StatusCode {
 	final String PAY_PASSWORD_WRONG = "110027"; // 支付密码错误
 	final String EXCEPTION_USER = "110028"; // 異常用戶
 	final String PLANT_MAINTENANCE = "110029"; // 平台处于维护
+	final String LIVING = "110030"; // 直播中
 
 	// 支付特有状态码
 	final String PAY_CODE_ERROR = "110050"; // 支付代码映射错误
