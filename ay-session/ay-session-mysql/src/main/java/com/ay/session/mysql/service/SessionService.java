@@ -37,6 +37,7 @@ public class SessionService extends CommonService {
 			session.setLastRequestTime(DateUtil.getCurrentDate());
 			session.setSessionId(System.currentTimeMillis() + UUIDUtil.generateUUID());
 			session.setTimeout(Byte.valueOf(Dictionary.STATUS.ENABLE + ""));
+			session.setPrivileged(Dictionary.STATUS.DISABLE);
 			this.sessionMapper.insert(session);
 			sessionIdMap.put(session.getSessionId(), session);
 			return session;
@@ -44,6 +45,8 @@ public class SessionService extends CommonService {
 		Session oldSession = sessionList.get(0);
 		oldSession.setLastRequestTime(DateUtil.getCurrentDate());
 		oldSession.setTimeout(Byte.valueOf(Dictionary.STATUS.ENABLE + ""));
+		// TODO: 上线的时候打开
+//		oldSession.setSessionId(System.currentTimeMillis() + session.getUsername());
 		this.sessionMapper.updateByPrimaryKeySelective(oldSession);
 		sessionIdMap.put(oldSession.getSessionId(), oldSession);
 		return oldSession;
