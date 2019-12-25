@@ -379,4 +379,34 @@ public interface Dictionary {
 
 	}
 
+	/**
+	 * 下注状态枚举
+	 * 
+	 * @author jackson
+	 *
+	 */
+	public enum MsgStatusEnum {
+		TO_SEND((byte) 1, "待发送"), //
+		SENDED((byte) 2, "发送成功"), //
+		SEND_FAILED((byte) 3, "发送失败"), //
+		SENDING((byte) 4, "发送中");
+
+		private Byte key;
+		private String value;
+
+		private MsgStatusEnum(Byte key, String value) {
+			this.key = key;
+			this.value = value;
+		}
+
+		public Byte getKey() {
+			return key;
+		}
+
+		public String getValue() {
+			return value;
+		}
+		
+	}
+
 }
