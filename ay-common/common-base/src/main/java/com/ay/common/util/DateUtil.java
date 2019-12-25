@@ -188,6 +188,27 @@ public class DateUtil {
 		return (hour < 10 ? "0" + hour : hour) + ":" + (min < 10 ? "0" + min : min) + ":" + (sec < 10 ? "0" + sec : sec);
 	}
 
+	public static String getGapTime(long time) {
+		long hours = time / (1000 * 60 * 60);
+		long minutes = (time - hours * (1000 * 60 * 60)) / (1000 * 60);
+		long seconds = (time / 1000) % 60;
+		String diffTime = "";
+		if (minutes < 10) {
+			diffTime = hours + ":0" + minutes;
+		} else {
+			diffTime = hours + ":" + minutes;
+		}
+		diffTime += ":" + (seconds < 10 ? "0" + seconds : seconds);
+		return diffTime;
+	}
+
+	public static void main(String[] args) throws Exception {
+		long now1 = System.currentTimeMillis();
+		Thread.sleep(10 * 1000);
+		long now2 = System.currentTimeMillis();
+		System.out.println(getGapTime((now2 - now1) * 1000l));
+	}
+
 	public static Long getMillsByHHmmss(String hhmmss, String split) {
 		String[] arr = hhmmss.split(split);
 		if (arr == null || arr.length < 3) {
