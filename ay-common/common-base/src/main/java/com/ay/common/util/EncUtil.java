@@ -226,5 +226,27 @@ public class EncUtil {
 		logger.info("明文 = {}, 密文 = {}", buffer.toString(), EncUtil.toMD5(buffer.toString()));
 		return EncUtil.toMD5(buffer.toString());
 	}
+	
+	public static final String buildSignNoEncrypt(Map<String, Object> paramMap, String encryptKey, String encryptValue) {
+		return buildSignNoEncrypt(paramMap, DEFAULT_JOIN, encryptKey, encryptValue);
+	}
+	
+	public static final String buildSignNoEncrypt(Map<String, Object> paramMap, String splitChar, String encryptKey, String encryptValue) {
+		Set<Entry<String, Object>> entrySet = paramMap.entrySet();
+		StringBuilder buffer = new StringBuilder();
+		for (Entry<String, Object> entry : entrySet) {
+			buffer.append(entry.getKey()).append("=").append(entry.getValue()).append(splitChar);
+		}
+		if (!StringUtil.isNull(encryptKey) && !StringUtil.isNull(encryptValue)) {
+			buffer.append(encryptKey).append("=").append(encryptValue);
+		} else if (!StringUtil.isNull(encryptValue)) {
+			buffer = new StringBuilder(buffer.substring(0, buffer.length() - 1));
+			buffer.append(encryptValue);
+		} else {
+			buffer = new StringBuilder(buffer.substring(0, buffer.length() - 1));
+		}
+		logger.info("铭文 = {}", buffer.toString());
+		return buffer.toString();
+	}
 
 }
