@@ -3,7 +3,7 @@
 <mapper namespace="com.ay.rbac.dao.ClientDao">
 
 	<select id="selectByUsername" resultType="com.ay.rbac.entity.Client">
-		SELECT * FROM r_client c
+		SELECT c.* FROM r_client c
 		INNER JOIN r_client_user cu ON c.id = cu.client_id
 		INNER JOIN r_user u ON cu.user_id = u.id
 		WHERE u.username = #{username} 

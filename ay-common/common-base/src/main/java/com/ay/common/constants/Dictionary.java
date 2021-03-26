@@ -20,7 +20,8 @@ public interface Dictionary {
 	 * 统计状态
 	 */
 	// 彩票狀態
-	List<String> lottoLotteryTotal = Arrays.asList(ResultEnum.WIN.getKey(), ResultEnum.LOSS.getKey(), ResultEnum.CANCEL.getKey(), ResultEnum.TIE.getKey());
+	List<String> lottoLotteryTotal = Arrays.asList(ResultEnum.WIN.getKey(), ResultEnum.LOSS.getKey(),
+			ResultEnum.CANCEL.getKey(), ResultEnum.TIE.getKey());
 
 	public interface STATUS {
 		final byte DISABLE = 0;
@@ -74,7 +75,8 @@ public interface Dictionary {
 	 */
 	interface MoneyType {
 		// 1: 充值记录, 2: 下注记录, 3:派彩记录, 4: 退款记录, 5: 转账记录, 6: 反水记录, 7:取款记录, 8:代理佣金派发,
-		// 9:代理佣金提取, 10:解冻/冻结资金, 11.活动奖金, 12:人工补单, 13:礼物, 14:抢单记录, 15:公司提款
+		// 9:代理佣金提取, 10:解冻/冻结资金, 11.活动奖金, 12:人工补单, 13:礼物, 14:抢单记录, 15:公司提款, 16:代收预扣
+		// 17:代付添加
 		int DEPOSIT = 1;
 		int BET = 2;
 		int PAYOFF = 3;
@@ -90,6 +92,8 @@ public interface Dictionary {
 		int GIFT = 13;
 		int GRAB = 14;
 		int CLIENT_WITHDRAWL = 15;
+		int COLLECT = 16;
+		int PAYBACK = 17;
 	}
 
 	/**
@@ -103,6 +107,7 @@ public interface Dictionary {
 		AGQ("agq", "ag极速厅"), //
 		MONEY("money", "钱包"), //
 		H8("H8", "H8体育");
+
 		private String key;
 
 		private String value;
@@ -197,7 +202,9 @@ public interface Dictionary {
 		WECHAT_QRCODE("WECHAT_QRCODE", "微信支付"), //
 		MANUAL("MANUAL", "人工"), //
 		PAY("PAY", "支付"), //
-		PROXY_PAY("PROXY_PAY", "代付");
+		PROXY_PAY("PROXY_PAY", "代付"), //
+		BANK("BANK", "代收银行卡");
+
 		private String key;
 		private String value;
 
@@ -228,6 +235,7 @@ public interface Dictionary {
 		TO_GRAB((byte) 6, "待抢单"), GRABED((byte) 7, "抢单完成"), //
 		REFRESH((byte) 8, "重新生成"), REFUND((byte) 9, "退款中"), //
 		TO_AUDIT((byte) 10, "待审核"), AUDITED((byte) 11, "审核通过"), AUDIT_FAIL((byte) 12, "审核不通过");
+
 		private Byte key;
 		private String value;
 
@@ -406,7 +414,7 @@ public interface Dictionary {
 		public String getValue() {
 			return value;
 		}
-		
+
 	}
 
 }

@@ -254,6 +254,12 @@ public class DateUtil {
 		return calendar.getTime();
 	}
 
+	public static Long getYesterdayLastSecond() {
+		Calendar calendar = Calendar.getInstance();
+		calendar.set(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH) - 1, 23, 59, 59);
+		return calendar.getTime().getTime() / 1000;
+	}
+
 	public static int getDayOfWeek() {
 		Calendar calendar = Calendar.getInstance();
 		return calendar.get(Calendar.DAY_OF_WEEK);

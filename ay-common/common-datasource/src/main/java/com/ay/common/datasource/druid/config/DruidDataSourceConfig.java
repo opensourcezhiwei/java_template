@@ -13,6 +13,7 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -22,7 +23,7 @@ import com.alibaba.druid.pool.DruidDataSource;
 import com.github.pagehelper.PageInterceptor;
 
 @Configuration
-@MapperScan(basePackages = { "com.ay.**.mapper", "com.ay.**.dao", "com.yq.**.mapper", "com.yq.**.dao" })
+@MapperScan(basePackages = { "com.ay.**.mapper", "com.ay.**.dao", "com.wastern.**.mapper", "com.wastern.**.dao"}, sqlSessionFactoryRef = "sqlSessionFactory")
 public class DruidDataSourceConfig {
 
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -88,7 +89,7 @@ public class DruidDataSourceConfig {
 	// @Value("${spring.jpa.properties.hibernate.connection.is-connection-validation-required:true}")
 	// private String connectionValidRequired;
 
-	@Bean
+	@Bean("dataSource")
 	@Primary
 	public DataSource dataSource() {
 		DruidDataSource dataSource = new DruidDataSource();
@@ -124,11 +125,13 @@ public class DruidDataSourceConfig {
 	}
 
 	@Bean
+	@Primary
 	public SqlSessionTemplate sqlSessionTemplate(SqlSessionFactory sqlSessionFactory) {
 		return new SqlSessionTemplate(sqlSessionFactory);
 	}
 
-	@Bean
+	@Bean(name = "sqlSessionFactory")
+	@Primary
 	public SqlSessionFactory sqlSessionFactory() throws Exception {
 		SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
 		sessionFactory.setDataSource(dataSource());
@@ -140,7 +143,7 @@ public class DruidDataSourceConfig {
 		pageHelper.setProperties(props);
 		sessionFactory.setPlugins(new Interceptor[] { pageHelper });
 		PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
-		sessionFactory.setMapperLocations(resolver.getResources("classpath*:com/**/*Mapper.xml,classpath*:com/yq/**/*Dao.xml"));
+		sessionFactory.setMapperLocations(resolver.getResources("classpath*:com/**/*Mapper.xml,classpath*:com/wastern/**/*Dao.xml"));
 		sessionFactory.setConfigLocation(resolver.getResource("classpath:mybatis-config.xml"));
 		return sessionFactory.getObject();
 	}
