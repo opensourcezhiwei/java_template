@@ -254,10 +254,26 @@ public class DateUtil {
 		return calendar.getTime();
 	}
 
-	public static Long getYesterdayLastSecond() {
+	/**
+	 * 获取昨天第一秒
+	 * 
+	 * @return
+	 */
+	public static Date getYesterdayFirstSecond() {
+		Calendar calendar = Calendar.getInstance();
+		calendar.set(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH) - 1, 0, 0, 0);
+		return calendar.getTime();
+	}
+
+	/**
+	 * 获取昨天最后一秒
+	 * 
+	 * @return
+	 */
+	public static Date getYesterdayLastSecond() {
 		Calendar calendar = Calendar.getInstance();
 		calendar.set(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH) - 1, 23, 59, 59);
-		return calendar.getTime().getTime() / 1000;
+		return calendar.getTime();
 	}
 
 	public static int getDayOfWeek() {
