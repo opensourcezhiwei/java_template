@@ -5,6 +5,7 @@ import java.security.InvalidKeyException;
 import java.security.KeyFactory;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 import java.security.interfaces.RSAPrivateKey;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.util.Map;
@@ -16,6 +17,7 @@ import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.Mac;
 import javax.crypto.NoSuchPaddingException;
+import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 
 import org.apache.commons.codec.binary.Base64;
@@ -29,7 +31,7 @@ import org.slf4j.LoggerFactory;
  *
  */
 public class EncUtil {
-	
+
 	private static final Logger logger = LoggerFactory.getLogger(EncUtil.class);
 
 	public static final String DEFAULT_JOIN = "&";
@@ -226,11 +228,11 @@ public class EncUtil {
 		logger.info("明文 = {}, 密文 = {}", buffer.toString(), EncUtil.toMD5(buffer.toString()));
 		return EncUtil.toMD5(buffer.toString());
 	}
-	
+
 	public static final String buildSignNoEncrypt(Map<String, Object> paramMap, String encryptKey, String encryptValue) {
 		return buildSignNoEncrypt(paramMap, DEFAULT_JOIN, encryptKey, encryptValue);
 	}
-	
+
 	public static final String buildSignNoEncrypt(Map<String, Object> paramMap, String splitChar, String encryptKey, String encryptValue) {
 		Set<Entry<String, Object>> entrySet = paramMap.entrySet();
 		StringBuilder buffer = new StringBuilder();
@@ -248,5 +250,4 @@ public class EncUtil {
 		logger.info("铭文 = {}", buffer.toString());
 		return buffer.toString();
 	}
-
 }
