@@ -52,6 +52,22 @@ public class DateUtil {
 		return sdf1.format(new Date(System.currentTimeMillis()));
 	}
 
+	// 根据毫秒数获取时间
+	public static String getDateByMills(Long mills) {
+		if (mills == null) {
+			return null;
+		}
+		return sdf1.format(new Date(mills));
+	}
+
+	// 根据秒数获取时间
+	public static String getDateBySeconds(Integer second) {
+		if (second == null) {
+			return null;
+		}
+		return getDateByMills(Long.valueOf(second + "000"));
+	}
+
 	public static String format(String format, Date date) {
 		return format(format, date, TimeZone.getTimeZone(DateUtil.GMT_8));
 	}
