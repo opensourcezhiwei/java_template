@@ -23,7 +23,7 @@ import com.alibaba.druid.pool.DruidDataSource;
 import com.github.pagehelper.PageInterceptor;
 
 @Configuration
-@MapperScan(basePackages = { "com.ay.**.mapper", "com.ay.**.dao", "com.wastern.**.mapper", "com.wastern.**.dao"}, sqlSessionFactoryRef = "sqlSessionFactory")
+@MapperScan(basePackages = { "com.ay.**.mapper", "com.ay.**.dao", "com.yq.**.mapper", "com.yq.**.dao"}, sqlSessionFactoryRef = "sqlSessionFactory")
 public class DruidDataSourceConfig {
 
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -143,7 +143,7 @@ public class DruidDataSourceConfig {
 		pageHelper.setProperties(props);
 		sessionFactory.setPlugins(new Interceptor[] { pageHelper });
 		PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
-		sessionFactory.setMapperLocations(resolver.getResources("classpath*:com/**/*Mapper.xml,classpath*:com/wastern/**/*Dao.xml"));
+		sessionFactory.setMapperLocations(resolver.getResources("classpath*:com/**/*Mapper.xml,classpath*:com/yq/**/*Dao.xml"));
 		sessionFactory.setConfigLocation(resolver.getResource("classpath:mybatis-config.xml"));
 		return sessionFactory.getObject();
 	}
