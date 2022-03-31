@@ -20,8 +20,7 @@ public interface Dictionary {
 	 * 统计状态
 	 */
 	// 彩票狀態
-	List<String> lottoLotteryTotal = Arrays.asList(ResultEnum.WIN.getKey(), ResultEnum.LOSS.getKey(),
-			ResultEnum.CANCEL.getKey(), ResultEnum.TIE.getKey());
+	List<String> lottoLotteryTotal = Arrays.asList(ResultEnum.WIN.getKey(), ResultEnum.LOSS.getKey(), ResultEnum.CANCEL.getKey(), ResultEnum.TIE.getKey());
 
 	public interface STATUS {
 		final byte DISABLE = 0;
@@ -65,6 +64,41 @@ public interface Dictionary {
 		byte SUCCESS = 2;
 		byte FAILED = 3;
 		byte EXCEPTION = 4;
+	}
+
+	enum MoneyTypeEnum {
+		ACTIVITY_PRODUCT("activity_product", "推广产品活动"), //
+		ACTIVITY_COUNT("activity_count", "推广人数活动"), //
+		RATE_MONEY("rate_money", "下级购买返金额"), //
+		RATE_COUNT("rate_count", "下级购买返利"), //
+		BUY("buy", "购买");
+
+		private String key;
+		private String value;
+
+		private MoneyTypeEnum(String key, String value) {
+			this.key = key;
+			this.value = value;
+		}
+
+		public static String getValueByKey(String key) {
+			MoneyTypeEnum[] values = MoneyTypeEnum.values();
+			for (MoneyTypeEnum moneyTypeEnum : values) {
+				if (key.equals(moneyTypeEnum.getKey())) {
+					return moneyTypeEnum.getValue();
+				}
+			}
+			return null;
+		}
+
+		public String getKey() {
+			return key;
+		}
+
+		public String getValue() {
+			return value;
+		}
+
 	}
 
 	/**

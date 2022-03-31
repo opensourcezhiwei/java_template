@@ -29,7 +29,8 @@ public class DateUtil {
 	public static final String GMT_4 = "GMT-4"; // 美东时间
 	public static final String GMT_8 = "GMT+8"; // 中国时间
 
-	public static SimpleDateFormat sdf1 = new SimpleDateFormat("yyyyMMdd");
+	public static SimpleDateFormat sdf1 = new SimpleDateFormat(YY_MM_DD1);
+	public static SimpleDateFormat sdf2 = new SimpleDateFormat(YY_MM_DD_HH_MM_SS);
 
 	public static Date changeTimeZone(Date date, TimeZone oldZone, TimeZone newZone) {
 		Date dateTmp = null;
@@ -50,6 +51,10 @@ public class DateUtil {
 	// 获取当前时间
 	public static String getCurDate() {
 		return sdf1.format(new Date(System.currentTimeMillis()));
+	}
+	
+	public static String getCurTime() {
+		return sdf2.format(new Date(System.currentTimeMillis())); 
 	}
 
 	// 根据毫秒数获取时间
