@@ -71,7 +71,9 @@ public interface Dictionary {
 		ACTIVITY_COUNT("activity_count", "推广人数活动"), //
 		RATE_MONEY("rate_money", "下级购买返金额"), //
 		RATE_COUNT("rate_count", "下级购买返利"), //
-		BUY("buy", "购买");
+		BUY("buy", "购买"), //
+		REGISTER("register", "注册奖励"), //
+		SIGN("sign", "签到奖励");
 
 		private String key;
 		private String value;
