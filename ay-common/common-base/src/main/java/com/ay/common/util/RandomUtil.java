@@ -134,23 +134,17 @@ public class RandomUtil {
 		Random r = new Random();
 		return r.nextInt(num);
 	}
+	
+	public static String generateNumByLength(int length) {
+		String result = "";
+		for (int i=0; i<length ; i++) {
+			result += NUMBERCHAR.charAt(generateNumber(10));
+		}
+		return result;
+	}
 
 	public static void main(String[] args) {
-		Random r = new Random();
-		for (int i = 0; i < 100; i++) {
-			System.out.println(r.nextInt(4));
-		}
-		System.out.println("返回一个定长的随机字符串(只包含大小写字母、数字):" + generateString(4));
-		// System.out.println("返回一个定长的随机纯字母字符串(只包含大小写字母):" +
-		// generateMixString(10));
-		// System.out.println("返回一个定长的随机纯大写字母字符串(只包含大小写字母):" +
-		// generateLowerString(10));
-		// System.out.println("返回一个定长的随机纯小写字母字符串(只包含大小写字母):" +
-		// generateUpperString(10));
-		// System.out.println("生成一个定长的纯0字符串:" + generateZeroString(10));
-		// System.out.println("根据数字生成一个定长的字符串，长度不够前面补0:" +
-		// toFixdLengthString(123, 10));
-		// int[] in = { 1, 2, 3, 4, 5, 6, 7 };
-		// System.out.println("每次生成的len位数都不相同:" + getNotSimple(in, 3));
+		String r = generateNumByLength(6);
+		System.out.println(r);
 	}
 }

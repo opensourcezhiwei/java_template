@@ -73,7 +73,9 @@ public interface Dictionary {
 		RATE_COUNT("rate_count", "下级购买返利"), //
 		BUY("buy", "购买"), //
 		REGISTER("register", "注册奖励"), //
-		SIGN("sign", "签到奖励");
+		REGISTER_COUNT("register_count", "注册奖励股数"), //
+		SIGN("sign", "签到奖励"), //
+		WITHDRAW_FAILED("withdraw_failed", "提现失败退款");
 
 		private String key;
 		private String value;
