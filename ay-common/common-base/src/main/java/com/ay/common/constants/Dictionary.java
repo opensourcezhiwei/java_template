@@ -68,7 +68,7 @@ public interface Dictionary {
 
 	enum MoneyTypeEnum {
 		ACTIVITY_PRODUCT("activity_product", "推广产品活动"), //
-		ACTIVITY_COUNT("activity_count", "推广人数活动"), //
+		ACTIVITY_COUNT("activity_person", "推广人数活动"), //
 		RATE_MONEY("rate_money", "下级购买返金额"), //
 		RATE_COUNT("rate_count", "下级购买返利"), //
 		RELEASE_MONEY("release_money", "返利金额"), //
@@ -76,6 +76,8 @@ public interface Dictionary {
 		REGISTER("register", "注册奖励"), //
 		REGISTER_COUNT("register_count", "注册奖励股数"), //
 		SIGN("sign", "签到奖励"), //
+		POINT("point", "抽奖"), //
+		WITHDRAW("withdraw", "提现"), //
 		WITHDRAW_FAILED("withdraw_failed", "提现失败退款");
 
 		private String key;
