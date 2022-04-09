@@ -71,6 +71,7 @@ public interface Dictionary {
 		ACTIVITY_COUNT("activity_count", "推广人数活动"), //
 		RATE_MONEY("rate_money", "下级购买返金额"), //
 		RATE_COUNT("rate_count", "下级购买返利"), //
+		RELEASE_MONEY("release_money", "返利金额"), //
 		BUY("buy", "购买"), //
 		REGISTER("register", "注册奖励"), //
 		REGISTER_COUNT("register_count", "注册奖励股数"), //
