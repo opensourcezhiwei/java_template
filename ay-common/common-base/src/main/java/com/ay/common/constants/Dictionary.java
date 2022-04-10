@@ -73,6 +73,7 @@ public interface Dictionary {
 		RATE_COUNT("rate_count", "下级购买返利"), //
 		RELEASE_MONEY("release_money", "返利金额"), //
 		BUY("buy", "购买"), //
+		BUY_POINT("buy_point", "购买送积分"), //
 		REGISTER("register", "注册奖励"), //
 		REGISTER_COUNT("register_count", "注册奖励股数"), //
 		SIGN("sign", "签到奖励"), //
