@@ -248,16 +248,13 @@ public class DateUtil {
 	}
 
 	/**
-	 * 获取当前的零点零分零秒
+	 * 获取某天的零点零分零秒
 	 * 
 	 * @return
 	 */
-	public static Date getDayFirstSecond(Date date) {
+	public static Date getDayFirstSecond(int day) {
 		Calendar calendar = Calendar.getInstance();
-		calendar.setTime(date);
-		calendar.set(Calendar.HOUR_OF_DAY, 0);
-		calendar.set(Calendar.MINUTE, 0);
-		calendar.set(Calendar.SECOND, 0);
+		calendar.set(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH) + day, 0, 0, 0);
 		return calendar.getTime();
 	}
 
@@ -266,12 +263,9 @@ public class DateUtil {
 	 * 
 	 * @return
 	 */
-	public static Date getDayLastSecond(Date date) {
+	public static Date getDayLastSecond(int day) {
 		Calendar calendar = Calendar.getInstance();
-		calendar.setTime(date);
-		calendar.set(Calendar.HOUR_OF_DAY, 23);
-		calendar.set(Calendar.MINUTE, 59);
-		calendar.set(Calendar.SECOND, 59);
+		calendar.set(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH) - 1, 23, 59, 59);
 		return calendar.getTime();
 	}
 
