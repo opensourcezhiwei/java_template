@@ -70,7 +70,9 @@ public interface Dictionary {
 		ACTIVITY_PRODUCT("activity_product", "推广产品活动"), //
 		ACTIVITY_COUNT("activity_person", "推广人数活动"), //
 		RATE_MONEY("rate_money", "下级购买返金额"), //
+		RATE_MONEY2("rate_money2", "下二级购买返金额"), //
 		RATE_COUNT("rate_count", "下级购买返利"), //
+		RATE_COUNT2("rate_count2", "下二级购买返利"), //
 		RELEASE_MONEY("release_money", "返利金额"), //
 		BACK("back", "后台修改"), //
 		BUY("buy", "购买"), //
