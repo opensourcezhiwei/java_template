@@ -77,6 +77,18 @@ public class DruidDataSourceConfig {
 	@Value("${spring.datasource.time-between-eviction-runs-millis:60000}")
 	private Long timeBetweenEvictionRunsMillis; // 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
 
+	@Value("${spring.datasource.keep-alive:false}")
+	private Boolean keepAlive;
+
+	@Value("${spring.datasource.pool-prepared-statements:false}")
+	private Boolean poolPreparedStatements;
+
+	@Value("${spring.datasource.max-pool-prepared-statement-per-connection-size:20}")
+	private Integer maxPoolPreparedStatementPerConnectionSize;
+
+	@Value("${spring.datasource.validation-query-timeout:10}")
+	private int validationQueryTimeout;
+
 	// @Value("${spring.jpa.properties.hibernate.show_sql}")
 	// private String showSql;
 
@@ -104,6 +116,7 @@ public class DruidDataSourceConfig {
 		dataSource.setMaxActive(this.maxActive);
 		dataSource.setMaxWait(this.maxWait);
 		dataSource.setValidationQuery(this.validationQuery);
+		dataSource.setValidationQueryTimeout(this.validationQueryTimeout);
 		dataSource.setTestWhileIdle(this.testWhileIdle);
 		if (this.removeAbandoned != null) {
 			dataSource.setRemoveAbandoned(this.removeAbandoned);
@@ -115,6 +128,16 @@ public class DruidDataSourceConfig {
 			dataSource.setLogAbandoned(this.logAbandoned);
 		}
 		dataSource.setTimeBetweenEvictionRunsMillis(this.timeBetweenEvictionRunsMillis);
+		// 新版本增加参数
+		if (this.keepAlive != null) {
+			dataSource.setKeepAlive(this.keepAlive);
+		}
+		if (this.poolPreparedStatements != null) {
+			dataSource.setPoolPreparedStatements(this.poolPreparedStatements);
+		}
+		if (this.maxPoolPreparedStatementPerConnectionSize != null) {
+			dataSource.setMaxPoolPreparedStatementPerConnectionSize(this.maxPoolPreparedStatementPerConnectionSize);
+		}
 		try {
 			dataSource.setFilters(filters);
 			dataSource.init();
