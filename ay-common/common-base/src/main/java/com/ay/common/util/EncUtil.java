@@ -207,6 +207,14 @@ public class EncUtil {
 		return s;
 	}
 
+	public static String encodeBase64(byte[] b) {
+		Base64 base64 = new Base64();
+		b = base64.encode(b);
+		String s = new String(b);
+		return s;
+	}
+	
+
 	public static final String buildSign(Map<String, Object> paramMap, String encryptKey, String encryptValue) {
 		return buildSign(paramMap, DEFAULT_JOIN, encryptKey, encryptValue);
 	}
