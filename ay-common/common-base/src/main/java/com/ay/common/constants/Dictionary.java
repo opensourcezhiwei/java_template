@@ -83,6 +83,7 @@ public interface Dictionary {
 		REGISTER_COUNT("register_count", "注册奖励股数"), //
 		SIGN("sign", "签到奖励"), //
 		POINT("point", "抽奖"), //
+		CHARGE("charge", "充值"), //
 		WITHDRAW("withdraw", "提现"), //
 		WITHDRAW_FAILED("withdraw_failed", "提现失败退款");
 
