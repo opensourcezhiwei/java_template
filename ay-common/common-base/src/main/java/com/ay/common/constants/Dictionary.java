@@ -243,25 +243,19 @@ public interface Dictionary {
 	}
 
 	public enum PayType {
-		UNION_QRCODE("UNION_QRCODE", "银联扫码"), //
-		ALIPAY_QRCODE("ALIPAY_QRCODE", "支付宝扫码"), //
-		ALIPAY_RED("ALIPAY_RED", "支付宝红包"), //
-		QUICK_PAY("QUICK_PAY", "快捷支付"), //
-		WECHAT_QRCODE("WECHAT_QRCODE", "微信支付"), //
-		MANUAL("MANUAL", "人工"), //
-		PAY("PAY", "支付"), //
-		PROXY_PAY("PROXY_PAY", "代付"), //
-		BANK("BANK", "代收银行卡");
+		MONEY(0, "余额支付"), //
+		WECHAT(1, "微信支付"), //
+		ALIPAY(2, "支付宝");
 
-		private String key;
+		private Integer key;
 		private String value;
 
-		private PayType(String key, String value) {
+		private PayType(Integer key, String value) {
 			this.key = key;
 			this.value = value;
 		}
 
-		public String getKey() {
+		public Integer getKey() {
 			return key;
 		}
 
@@ -269,6 +263,17 @@ public interface Dictionary {
 			return value;
 		}
 
+		public static String getValueByKey(Integer key) {
+			if (key == null) {
+				return null;
+			}
+			for (PayType type : PayType.values()) {
+				if (key.intValue() == type.getKey().intValue()) {
+					return type.getValue();
+				}
+			}
+			return null;
+		}
 	}
 
 	/**
