@@ -85,7 +85,9 @@ public interface Dictionary {
 		POINT("point", "抽奖"), //
 		CHARGE("charge", "充值"), //
 		WITHDRAW("withdraw", "提现"), //
-		WITHDRAW_FAILED("withdraw_failed", "提现失败退款");
+		WITHDRAW_FAILED("withdraw_failed", "提现失败退款"), //
+		PROMISE_MONEY("promise_money", "保证金"), //
+		RELEASE_PROMISE_MONEY("release_promise_money", "释放保证金");
 
 		private String key;
 		private String value;

@@ -6,6 +6,7 @@ import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Base64;
+import java.util.Base64.Decoder;
 
 public class FileUtil {
 
@@ -48,5 +49,5 @@ public class FileUtil {
 			return false;
 		}
 	}
-
+	
 }
