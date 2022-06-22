@@ -265,7 +265,7 @@ public class DateUtil {
 	 */
 	public static Date getDayLastSecond(int day) {
 		Calendar calendar = Calendar.getInstance();
-		calendar.set(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH) - 1, 23, 59, 59);
+		calendar.set(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH) + day, 23, 59, 59);
 		return calendar.getTime();
 	}
 
