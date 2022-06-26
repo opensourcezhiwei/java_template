@@ -74,6 +74,7 @@ public interface Dictionary {
 		RATE_COUNT("rate_count", "一级推荐返利"), //
 		RATE_COUNT2("rate_count2", "二级推荐返利"), //
 		RELEASE_MONEY("release_money", "返利金额"), //
+		THREE_RELEASE("three_release", "三日返利金额"), //
 		RELEASE_MONEY_BY_CHILD("RELEASE_MONEY_BY_CHILD", "下级激活奖励"), //
 		RELEASE_MONEY2("release_money2", "返利金额"), //
 		BACK("back", "后台修改"), //
