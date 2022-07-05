@@ -88,6 +88,7 @@ public interface Dictionary {
 		WITHDRAW("withdraw", "提现"), //
 		WITHDRAW_FAILED("withdraw_failed", "提现失败退款"), //
 		PROMISE_MONEY("promise_money", "保证金"), //
+		CHANGE("change", "兑换"), //
 		RELEASE_PROMISE_MONEY("release_promise_money", "释放保证金");
 
 		private String key;
