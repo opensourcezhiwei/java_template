@@ -52,9 +52,9 @@ public class DateUtil {
 	public static String getCurDate() {
 		return sdf1.format(new Date(System.currentTimeMillis()));
 	}
-	
+
 	public static String getCurTime() {
-		return sdf2.format(new Date(System.currentTimeMillis())); 
+		return sdf2.format(new Date(System.currentTimeMillis()));
 	}
 
 	// 根据毫秒数获取时间
@@ -255,6 +255,20 @@ public class DateUtil {
 	public static Date getDayFirstSecond(int day) {
 		Calendar calendar = Calendar.getInstance();
 		calendar.set(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH) + day, 0, 0, 0);
+		return calendar.getTime();
+	}
+
+	/**
+	 * 获取某天的零点零分零秒
+	 * 
+	 * @return
+	 */
+	public static Date getHourDiffer(int hour, int minute, int second) {
+		Calendar calendar = Calendar.getInstance();
+		calendar.set(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH), //
+				calendar.get(Calendar.HOUR_OF_DAY) + hour, //
+				calendar.get(Calendar.MINUTE) + minute, //
+				calendar.get(Calendar.SECOND) + second);
 		return calendar.getTime();
 	}
 
