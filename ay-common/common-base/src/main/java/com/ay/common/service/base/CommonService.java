@@ -46,11 +46,16 @@ public class CommonService implements StatusCode {
 		return resultMap;
 	}
 
-	protected Map<String, Object> result(String code, Object msg) {
+	protected Map<String, Object> result(String code, Object msg, Object data) {
 		Map<String, Object> resultMap = new HashMap<>();
 		resultMap.put(STATUS, code);
 		resultMap.put(MESSAGE, msg);
+		resultMap.put(DATA, data);
 		return resultMap;
 	}
-	
+
+	protected Map<String, Object> result(String code, Object msg) {
+		return this.result(code, msg, null);
+	}
+
 }
