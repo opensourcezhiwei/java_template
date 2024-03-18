@@ -71,14 +71,17 @@ public interface Dictionary {
 		ACTIVITY_COUNT("activity_person", "推广人数活动"), //
 		RATE_MONEY("rate_money", "一级推荐奖励"), //
 		RATE_MONEY2("rate_money2", "二级推荐奖励"), //
+		RATE_MONEY3("rate_money3", "三级推荐奖励"), //
 		RATE_COUNT("rate_count", "一级推荐返利"), //
 		RATE_COUNT2("rate_count2", "二级推荐返利"), //
+		RATE_COUNT3("rate_count3", "三级推荐返利"), //
 		RELEASE_MONEY("release_money", "返利金额"), //
 		THREE_RELEASE("three_release", "三日返利金额"), //
 		RELEASE_MONEY_BY_CHILD("RELEASE_MONEY_BY_CHILD", "下级激活奖励"), //
 		RELEASE_MONEY2("release_money2", "返利金额"), //
 		BACK("back", "后台修改"), //
 		BUY("buy", "购买"), //
+		GIFT("gift", "赠送"), //
 		BUY_POINT("buy_point", "购买送积分"), //
 		REGISTER("register", "注册奖励"), //
 		REGISTER_COUNT("register_count", "注册奖励股数"), //
@@ -90,7 +93,15 @@ public interface Dictionary {
 		PROMISE_MONEY("promise_money", "保证金"), //
 		CHANGE("change", "兑换"), //
 		AUDIT_FAILED("audit_failed", "审核退款"), //
-		RELEASE_PROMISE_MONEY("release_promise_money", "释放保证金");
+		RELEASE_PROMISE_MONEY("release_promise_money", "释放保证金"),
+
+		MANUAL_CHARGE("manual_charge", "客服充值"), //
+		MANUAL_REDUCE("manual_reduce", "客服扣除"), //
+		MANUAL_WITHDRAW("manual_withdraw", "客服提现"), //
+		GIFT_MONEY("gift_money", "充值赠送"), //
+		PRIZE_MONEY("prize_money", "余额奖励"), // GX专用
+		REAL_VERIFY_REWARD("real_verify_reward", "实名认证奖励"),
+		PRODUCT_BACK("product_back", "产品回购");
 
 		private String key;
 		private String value;
@@ -249,8 +260,11 @@ public interface Dictionary {
 
 	public enum PayType {
 		MONEY(0, "余额支付"), //
-		WECHAT(1, "微信支付"), //
-		ALIPAY(2, "支付宝");
+		WECHAT(1, "微信"), //
+		ALIPAY(2, "支付宝"),
+		UNIONPAY(4, "银联"),
+		OTHER_PAY(5, "其它"), //非主流渠道，全部使用其它type=5
+		MANUALLY(9, "后台上分");
 
 		private Integer key;
 		private String value;
@@ -281,6 +295,30 @@ public interface Dictionary {
 		}
 	}
 
+
+	public enum TokenMoneyType {
+		//
+		REAL_MONEY(1, "真钱"), //
+		RATE(2, "返利金额"), //
+		ACTIVITY(3, "活动金"), //
+		GIFT(4, "赠送");
+		private Integer key;
+		private String value;
+
+		private TokenMoneyType(Integer key, String value) {
+			this.key = key;
+			this.value = value;
+		}
+
+		public Integer getKey() {
+			return key;
+		}
+
+		public String getValue() {
+			return value;
+		}
+
+	}
 	/**
 	 * 支付状态枚举
 	 * 
@@ -288,11 +326,20 @@ public interface Dictionary {
 	 *
 	 */
 	public enum PayStatusEnum {
-		PAYING((byte) 1, "支付中"), SUCCESS((byte) 2, "支付成功"), FAILED((byte) 3, "支付失败"), //
-		MAYBE((byte) 4, "支付异常"), LOCKED((byte) 5, "抢单锁定"), //
-		TO_GRAB((byte) 6, "待抢单"), GRABED((byte) 7, "抢单完成"), //
-		REFRESH((byte) 8, "重新生成"), REFUND((byte) 9, "退款中"), //
-		TO_AUDIT((byte) 10, "待审核"), AUDITED((byte) 11, "审核通过"), AUDIT_FAIL((byte) 12, "审核不通过");
+		PAYING((byte) 1, "支付中"),
+		SUCCESS((byte) 2, "支付成功"),
+		FAILED((byte) 3, "支付失败"), //
+		MAYBE((byte) 4, "支付异常"),
+		LOCKED((byte) 5, "抢单锁定"), //
+		TO_GRAB((byte) 6, "待抢单"),
+		GRABED((byte) 7, "抢单完成"), //
+		REFRESH((byte) 8, "重新生成"),
+		REFUND((byte) 9, "退款中"), //
+		TO_AUDIT((byte) 10, "待审核"),
+		AUDITED((byte) 11, "审核通过"),
+		AUDIT_FAIL((byte) 12, "审核不通过"),
+		MANUALLY((byte) 13, "后台下分"),
+		;
 
 		private Byte key;
 		private String value;

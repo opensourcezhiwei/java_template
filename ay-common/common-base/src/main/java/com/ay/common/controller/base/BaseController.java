@@ -6,6 +6,9 @@ import java.util.Map;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.ay.common.constants.StatusCode;
 import com.ay.common.util.StringUtil;
 
@@ -16,6 +19,8 @@ import com.ay.common.util.StringUtil;
  *
  */
 public class BaseController implements StatusCode {
+	
+	protected final Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	/**
 	 * 获取真实ip
