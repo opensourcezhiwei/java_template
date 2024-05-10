@@ -101,7 +101,8 @@ public interface Dictionary {
 		GIFT_MONEY("gift_money", "充值赠送"), //
 		PRIZE_MONEY("prize_money", "余额奖励"), // GX专用
 		REAL_VERIFY_REWARD("real_verify_reward", "实名认证奖励"),
-		PRODUCT_BACK("product_back", "产品回购");
+		PRODUCT_BACK("product_back", "产品回购"), //
+		AUTHENTICATION("authentication", "认证");
 
 		private String key;
 		private String value;
