@@ -103,7 +103,8 @@ public interface Dictionary {
 		REAL_VERIFY_REWARD("real_verify_reward", "实名认证奖励"),
 		PRODUCT_BACK("product_back", "产品回购"), //
 		AUTHENTICATION("authentication", "认证"), //
-		CARVE_UP("carve_up", "瓜分");
+		CARVE_UP("carve_up", "瓜分"),
+		COVER("cover", "抵扣");
 
 		private String key;
 		private String value;
