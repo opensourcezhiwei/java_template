@@ -104,7 +104,8 @@ public interface Dictionary {
 		PRODUCT_BACK("product_back", "产品回购"), //
 		AUTHENTICATION("authentication", "认证"), //
 		CARVE_UP("carve_up", "瓜分"),
-		COVER("cover", "抵扣");
+		COVER("cover", "抵扣"),
+		TEAM_PRIZE("team_prize", "团队业绩奖励");
 
 		private String key;
 		private String value;
