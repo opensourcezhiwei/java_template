@@ -106,7 +106,8 @@ public interface Dictionary {
 		AUTHENTICATION("authentication", "认证"), //
 		CARVE_UP("carve_up", "瓜分"),
 		COVER("cover", "抵扣"),
-		TEAM_PRIZE("team_prize", "团队业绩奖励");
+		TEAM_PRIZE("team_prize", "团队业绩奖励"),
+		SALE("sale", "售卖股权");
 
 		private String key;
 		private String value;
