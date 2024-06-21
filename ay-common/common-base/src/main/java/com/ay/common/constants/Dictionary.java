@@ -105,6 +105,7 @@ public interface Dictionary {
 		PRODUCT_COUNT_PROFIT("product_count_profit", "股权收益"), //
 		AUTHENTICATION("authentication", "认证"), //
 		CARVE_UP("carve_up", "瓜分"),
+		SHARE_GIFT("share_gift", "共享红利"),
 		COVER("cover", "抵扣"),
 		TEAM_PRIZE("team_prize", "团队业绩奖励"),
 		SALE("sale", "售卖股权");
